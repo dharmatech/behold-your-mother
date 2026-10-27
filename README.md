@@ -2,14 +2,20 @@
 
 A poster of parallels in Catholic theology, written as a [Graphviz](https://graphviz.org) diagram.
 
-- `poster.dot`: the source; edit this file
-- `render.sh`: builds the outputs
-- `poster.svg`: zoomable vector version; open it in a browser
-- `poster.png`: raster version; ignored by git because it is large, so rebuild it with `render.sh`
+There are two layouts of the same cards, kept side by side while we compare them:
+
+- `poster.dot`: tall, one panel (~26 × 72 in)
+- `poster-wide.dot`: wide, two panels side by side, sections I–II left and III–IV right (~49 × 47 in)
+
+Until one layout is chosen, a change to a card must be made in both files.
+
+- `render.sh`: builds every `.dot` file here into `NAME.svg` and `NAME.png`
+- `*.svg`: zoomable vector versions; open them in a browser
+- `*.png`: raster versions; ignored by git because they are large, so rebuild them with `render.sh`
 
 ```bash
-./render.sh        # PNG at 150 dpi (~26 × 35 in)
-./render.sh 300    # PNG at 300 dpi, print quality
+./render.sh        # PNGs at 150 dpi
+./render.sh 300    # PNGs at 300 dpi, print quality
 ```
 
 ## Layout
