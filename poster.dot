@@ -1,0 +1,258 @@
+// The New Adam & the New Eve — a typology poster.
+//
+// Layout: one row per parallel.
+//   left   = Old Covenant type
+//   center = the parallel that links them
+//   right  = New Covenant fulfillment
+//
+// Render with ./render.sh  (writes poster.svg and poster.png)
+
+digraph poster {
+  graph [
+    newrank=true
+    rankdir=TB
+    bgcolor="#FBF7EF"
+    fontname="P052"
+    pad="1.5,1.2"
+    nodesep=0.9
+    ranksep=0.6
+    splines=line
+  ]
+
+  node [
+    shape=box
+    style="rounded,filled"
+    fontname="P052"
+    fontsize=19
+    penwidth=3
+    margin="0.3,0.2"
+  ]
+
+  // ── Title, column headers, footer ────────────────────────────
+
+  subgraph frame {
+    node [shape=plaintext style="" margin=0 group=par]
+
+    title [label=<<TABLE BORDER="0" CELLSPACING="10">
+      <TR><TD><FONT POINT-SIZE="96" COLOR="#3B2A16"><B>THE NEW ADAM &amp; THE NEW EVE</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="32" COLOR="#6B5236"><I>how the first man and woman, and the throne of David, foreshadow Christ and his Mother</I></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="24" COLOR="#6B5236">“The New Testament lies hidden in the Old, and the Old is unveiled in the New.”  — St. Augustine (CCC 129)</FONT></TD></TR>
+    </TABLE>>]
+
+    hdr_ot  [group=ot label=<<TABLE BORDER="0"><TR><TD><FONT POINT-SIZE="36" COLOR="#8A6440"><B>OLD COVENANT</B></FONT></TD></TR><TR><TD><FONT POINT-SIZE="24" COLOR="#8A6440"><I>the type</I></FONT></TD></TR></TABLE>>]
+    hdr_par [label=<<TABLE BORDER="0"><TR><TD><FONT POINT-SIZE="36" COLOR="#9A7A22"><B>THE PARALLEL</B></FONT></TD></TR><TR><TD><FONT POINT-SIZE="24" COLOR="#9A7A22"><I>what links them</I></FONT></TD></TR></TABLE>>]
+    hdr_nt  [group=nt label=<<TABLE BORDER="0"><TR><TD><FONT POINT-SIZE="36" COLOR="#2F5A8A"><B>NEW COVENANT</B></FONT></TD></TR><TR><TD><FONT POINT-SIZE="24" COLOR="#2F5A8A"><I>the fulfillment</I></FONT></TD></TR></TABLE>>]
+
+    footer [label=<<TABLE BORDER="0" CELLSPACING="6">
+      <TR><TD><FONT POINT-SIZE="18" COLOR="#6B5236">Scripture quotations follow the RSV.  CCC = Catechism of the Catholic Church.</FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="18" COLOR="#6B5236">St. Justin Martyr, <I>Dialogue with Trypho</I> 100  ·  St. Irenaeus, <I>Against Heresies</I> III.22.4  ·  Pius XII, <I>Ad Caeli Reginam</I> (1954)</FONT></TD></TR>
+    </TABLE>>]
+  }
+
+  // ── Old Covenant column ──────────────────────────────────────
+
+  subgraph old_covenant {
+    node [group=ot width=6.8 fillcolor="#F1E5CF" color="#8A6440" fontcolor="#3E2C1A"]
+
+    adam [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>ADAM</B></FONT></TD></TR>
+      <TR><TD>the first man, formed<BR/>from the dust of the ground</TD></TR>
+      <TR><TD><I>“by one man's disobedience<BR/>many were made sinners”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Gen 2:7  ·  Rom 5:12, 19</FONT></TD></TR>
+    </TABLE>>]
+
+    eve [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>EVE</B></FONT></TD></TR>
+      <TR><TD>the first woman,<BR/>formed from Adam's side</TD></TR>
+      <TR><TD><I>a virgin, she listened<BR/>to the serpent and disobeyed</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Gen 2:21–22; 3:1–6</FONT></TD></TR>
+    </TABLE>>]
+
+    fall [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>THE FIRST SIN</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#8A6440"><I>in the garden of Eden</I></FONT></TD></TR>
+      <TR><TD>Eve takes the fruit and eats;<BR/>“she also gave some to her husband …<BR/>and he ate”</TD></TR>
+      <TR><TD><I>their eyes are opened:<BR/>shame, exile from the garden, death</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Gen 3:6–7, 19, 23</FONT></TD></TR>
+    </TABLE>>]
+
+    woman_ot [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>“WOMAN”</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#8A6440">אִשָּׁה<I>   ’ishshah</I></FONT></TD></TR>
+      <TR><TD>“she shall be called Woman,<BR/>because she was taken out of Man”</TD></TR>
+      <TR><TD>through the whole story of the Fall<BR/>she is simply “the woman” —<BR/>only afterward is she named Eve</TD></TR>
+      <TR><TD><I>“I will put enmity between you<BR/>and the woman, and between<BR/>your seed and her seed”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Gen 2:23; 3:1–16, 20</FONT></TD></TR>
+    </TABLE>>]
+
+    solomon [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>SOLOMON</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#8A6440"><I>son of David, king of Israel</I></FONT></TD></TR>
+      <TR><TD>seated on the throne of David</TD></TR>
+      <TR><TD><I>God's promise to David's son:<BR/>“I will establish the throne<BR/>of his kingdom for ever”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">2 Sam 7:12–16  ·  1 Kgs 2:12</FONT></TD></TR>
+    </TABLE>>]
+
+    bathsheba [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>BATHSHEBA</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#8A6440"><I>mother of King Solomon</I></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#8A6440">גְּבִירָה<I>   gebirah, “great lady”</I></FONT></TD></TR>
+      <TR><TD>in the house of David the queen<BR/>was the king's mother, not his wife:<BR/>Solomon had 700 wives, but one mother</TD></TR>
+      <TR><TD><I>the king rises to meet her, bows,<BR/>and sets a throne for her at his right hand;<BR/>she brings petitions to the king</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">1 Kgs 2:19–20; 11:3; 15:13  ·  Jer 13:18</FONT></TD></TR>
+    </TABLE>>]
+  }
+
+  // ── The parallels (center column) ────────────────────────────
+
+  subgraph parallels {
+    node [group=par width=6.6 fillcolor="#F5E6B0" color="#B08A2E" fontcolor="#3B2F12" peripheries=1]
+
+    new_adam [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="38"><B>THE NEW ADAM</B></FONT></TD></TR>
+      <TR><TD>Adam “was a type<BR/>of the one who was to come”</TD></TR>
+      <TR><TD><I>“The first man Adam became a living being;<BR/>the last Adam became a life-giving spirit.”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Rom 5:14  ·  1 Cor 15:22, 45  ·  CCC 411, 504</FONT></TD></TR>
+    </TABLE>>]
+
+    new_eve [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="38"><B>THE NEW EVE</B></FONT></TD></TR>
+      <TR><TD><I>“the knot of Eve's disobedience<BR/>was loosed by the obedience of Mary”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="17">— St. Irenaeus, c. 180</FONT></TD></TR>
+      <TR><TD><I>“Death through Eve, life through Mary.”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="17">— the Fathers</FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">St. Justin, <I>Dialogue</I> 100  ·  CCC 411, 494, 726</FONT></TD></TR>
+    </TABLE>>]
+
+    urging [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="38"><B>AT HER URGING</B></FONT></TD></TR>
+      <TR><TD>In Eden, at Eve's urging,<BR/>Adam commits the <B>first sin</B>.</TD></TR>
+      <TR><TD>At Cana, at Mary's urging,<BR/>Jesus performs his <B>first sign</B>.</TD></TR>
+      <TR><TD><I>Eve led her husband away from God's word;<BR/>Mary points to it: “Do whatever he tells you.”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Gen 3:6  ·  Jn 2:3–5, 11  ·  CCC 1613, 2618</FONT></TD></TR>
+    </TABLE>>]
+
+    woman [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="38"><B>WOMAN</B></FONT></TD></TR>
+      <TR><TD>Jesus calls his mother not “Mother”<BR/>but “Woman” — the name of Eve<BR/>before the Fall</TD></TR>
+      <TR><TD><I>Mary is the Woman of the first Gospel,<BR/>at enmity with the serpent (Gen 3:15)</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">CCC 410–411, 726</FONT></TD></TR>
+    </TABLE>>]
+
+    king [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="38"><B>THE KING</B></FONT></TD></TR>
+      <TR><TD>the promise to David's son<BR/>is fulfilled in the everlasting<BR/>reign of Christ</TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Mt 1:1  ·  Lk 1:32–33  ·  CCC 439</FONT></TD></TR>
+    </TABLE>>]
+
+    queen_mother [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="38"><B>THE QUEEN MOTHER</B></FONT></TD></TR>
+      <TR><TD>the Son of David reigns for ever,<BR/>and the queen of his kingdom<BR/>is his mother</TD></TR>
+      <TR><TD><I>as Bathsheba brought petitions to Solomon,<BR/>Mary brings our needs to her Son</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Jn 2:3  ·  CCC 966, 969  ·  <I>Ad Caeli Reginam</I></FONT></TD></TR>
+    </TABLE>>]
+  }
+
+  // ── New Covenant column ──────────────────────────────────────
+
+  subgraph new_covenant {
+    node [group=nt width=6.8 fillcolor="#E4ECF6" color="#2F5A8A" fontcolor="#1C2E45"]
+
+    jesus [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>JESUS CHRIST</B></FONT></TD></TR>
+      <TR><TD>the last Adam, the man from heaven,<BR/>who begins the new creation</TD></TR>
+      <TR><TD><I>“by one man's obedience<BR/>many will be made righteous”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Rom 5:19  ·  1 Cor 15:47</FONT></TD></TR>
+    </TABLE>>]
+
+    mary [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>MARY</B></FONT></TD></TR>
+      <TR><TD>a virgin, she listened<BR/>to the angel and obeyed</TD></TR>
+      <TR><TD><I>“let it be to me<BR/>according to your word”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Lk 1:26–38</FONT></TD></TR>
+    </TABLE>>]
+
+    cana [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>THE FIRST SIGN</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#2F5A8A"><I>the wedding at Cana</I></FONT></TD></TR>
+      <TR><TD>at the wedding feast Mary tells him,<BR/>“They have no wine,” and tells the servants,<BR/>“Do whatever he tells you”</TD></TR>
+      <TR><TD><I>water becomes wine, “the first of his signs”:<BR/>he “manifested his glory;<BR/>and his disciples believed in him”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Jn 2:1–11</FONT></TD></TR>
+    </TABLE>>]
+
+    woman_nt [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>“WOMAN”</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#2F5A8A">γύναι<I>   gynai</I></FONT></TD></TR>
+      <TR><TD>at Cana:<BR/>“Woman, … my hour has not yet come”</TD></TR>
+      <TR><TD>at the Cross, when the hour has come:<BR/>“Woman, behold, your son!”</TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Jn 2:4; 19:26</FONT></TD></TR>
+    </TABLE>>]
+
+    christ_king [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>CHRIST THE KING</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#2F5A8A"><I>Jesus, Son of David</I></FONT></TD></TR>
+      <TR><TD><I>“the Lord God will give to him<BR/>the throne of his father David …<BR/>and of his kingdom there will be no end”</I></TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Lk 1:32–33</FONT></TD></TR>
+    </TABLE>>]
+
+    mary_queen [label=<<TABLE BORDER="0" CELLSPACING="5">
+      <TR><TD><FONT POINT-SIZE="34"><B>QUEEN OF HEAVEN</B></FONT></TD></TR>
+      <TR><TD><FONT POINT-SIZE="22" COLOR="#2F5A8A"><I>Mary, mother of the King</I></FONT></TD></TR>
+      <TR><TD>Elizabeth greets her as<BR/>“the mother of my Lord”</TD></TR>
+      <TR><TD><I>“a woman clothed with the sun …<BR/>on her head a crown of twelve stars”</I></TD></TR>
+      <TR><TD>assumed into heaven and “exalted<BR/>by the Lord as Queen over all things”</TD></TR>
+      <TR><TD><FONT POINT-SIZE="16">Lk 1:43  ·  Rev 12:1  ·  CCC 966</FONT></TD></TR>
+    </TABLE>>]
+  }
+
+  // ── Rows, grouped into sections ──────────────────────────────
+
+  { rank=same; hdr_ot; hdr_par; hdr_nt }
+
+  subgraph cluster_beginning {
+    label=<<FONT POINT-SIZE="30" COLOR="#6B5236"><B>I · IN THE BEGINNING</B>   <I>the first man and woman</I></FONT>>
+    labeljust=l
+    style="rounded,dashed"
+    color="#CDBB98"
+    penwidth=2
+    margin=36
+
+    { rank=same; adam;     new_adam; jesus }
+    { rank=same; eve;      new_eve;  mary }
+    { rank=same; fall;     urging;   cana }
+    { rank=same; woman_ot; woman;    woman_nt }
+  }
+
+  subgraph cluster_kingdom {
+    label=<<FONT POINT-SIZE="30" COLOR="#6B5236"><B>II · THE THRONE OF DAVID</B>   <I>the king and the queen mother</I></FONT>>
+    labeljust=l
+    style="rounded,dashed"
+    color="#CDBB98"
+    penwidth=2
+    margin=36
+
+    { rank=same; solomon;   king;         christ_king }
+    { rank=same; bathsheba; queen_mother; mary_queen }
+  }
+
+  // ── Parallels: type —— parallel ——▶ fulfillment ──────────────
+
+  edge [color="#B08A2E" penwidth=5 arrowsize=1.4]
+
+  adam      -> new_adam     [arrowhead=none];  new_adam     -> jesus
+  eve       -> new_eve      [arrowhead=none];  new_eve      -> mary
+  fall      -> urging       [arrowhead=none];  urging       -> cana
+  woman_ot  -> woman        [arrowhead=none];  woman        -> woman_nt
+  solomon   -> king         [arrowhead=none];  king         -> christ_king
+  bathsheba -> queen_mother [arrowhead=none];  queen_mother -> mary_queen
+
+  // ── Invisible scaffolding: keeps the three columns straight ──
+
+  edge [style=invis weight=100]
+
+  hdr_ot -> hdr_par -> hdr_nt
+  title  -> hdr_par
+  hdr_ot  -> adam     -> eve     -> fall   -> woman_ot -> solomon     -> bathsheba
+  hdr_par -> new_adam -> new_eve -> urging -> woman    -> king        -> queen_mother -> footer
+  hdr_nt  -> jesus    -> mary    -> cana   -> woman_nt -> christ_king -> mary_queen
+}
