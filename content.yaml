@@ -1,0 +1,540 @@
+# Everything on the posters and the web page comes from this file.
+# After editing it, run ./render.sh. README.md explains the format.
+
+title: The New Adam & the New Eve
+subtitle: how the first man and woman, the throne of David, and the Ark of the Covenant foreshadow Christ and his Mother
+epigraph:
+  text: “The New Testament lies hidden in the Old, and the Old is unveiled in the New.”
+  by: St. Augustine (CCC 129)
+
+# Sections and their parallels, in order.
+# Each parallel belongs to the section above it.
+contents:
+
+# ── In the Beginning ────────────────────────────────────────────
+
+- section: In the Beginning
+  subtitle: the first man and woman
+
+- type:
+    title: Adam
+    body:
+      - |
+        the first man, formed
+        from the dust of the ground
+      - italic: |
+          “by one man's disobedience
+          many were made sinners”
+    refs: Gen 2:7 · Rom 5:12, 19
+  parallel:
+    title: The New Adam
+    body:
+      - |
+        Adam “was a type
+        of the one who was to come”
+      - italic: |
+          “The first man Adam became a living being;
+          the last Adam became a life-giving spirit.”
+    refs: Rom 5:14 · 1 Cor 15:22, 45 · CCC 411, 504
+  fulfillment:
+    title: Jesus Christ
+    body:
+      - |
+        the last Adam, the man from heaven,
+        who begins the new creation
+      - italic: |
+          “by one man's obedience
+          many will be made righteous”
+    refs: Rom 5:19 · 1 Cor 15:47
+
+- type:
+    title: Eve
+    body:
+      - |
+        the first woman,
+        formed from Adam's side
+      - italic: |
+          a virgin, she listened
+          to the serpent and disobeyed
+    refs: Gen 2:21–22; 3:1–6
+  parallel:
+    title: The New Eve
+    body:
+      - italic: |
+          “the knot of Eve's disobedience
+          was loosed by the obedience of Mary”
+      - by: St. Irenaeus, c. 180
+      - italic: “Death through Eve, life through Mary.”
+      - by: the Fathers
+    refs: St. Justin, _Dialogue_ 100 · CCC 411, 494, 726
+  fulfillment:
+    title: Mary
+    body:
+      - |
+        a virgin, she listened
+        to the angel and obeyed
+      - italic: |
+          “let it be to me
+          according to your word”
+    refs: Lk 1:26–38
+
+- type:
+    title: The First Sin
+    subtitle: in the garden of Eden
+    body:
+      - |
+        Eve takes the fruit and eats;
+        “she also gave some to her husband …
+        and he ate”
+      - italic: |
+          their eyes are opened:
+          shame, exile from the garden, death
+    refs: Gen 3:6–7, 19, 23
+  parallel:
+    title: At Her Urging
+    body:
+      - |
+        In Eden, at Eve's urging,
+        Adam commits the **first sin**.
+      - |
+        At Cana, at Mary's urging,
+        Jesus performs his **first sign**.
+      - italic: |
+          Eve led her husband away from God's word;
+          Mary points to it: “Do whatever he tells you.”
+    refs: Gen 3:6 · Jn 2:3–5, 11 · CCC 1613, 2618
+  fulfillment:
+    title: The First Sign
+    subtitle: the wedding at Cana
+    body:
+      - |
+        at the wedding feast Mary tells him,
+        “They have no wine,” and tells the servants,
+        “Do whatever he tells you”
+      - italic: |
+          water becomes wine, “the first of his signs”:
+          he “manifested his glory;
+          and his disciples believed in him”
+    refs: Jn 2:1–11
+
+- type:
+    title: “Woman”
+    body:
+      - word: אִשָּׁה
+        reading: ’ishshah
+      - |
+        “she shall be called Woman,
+        because she was taken out of Man”
+      - |
+        through the whole story of the Fall
+        she is simply “the woman” —
+        only afterward is she named Eve
+      - italic: |
+          “I will put enmity between you
+          and the woman, and between
+          your seed and her seed”
+    refs: Gen 2:23; 3:1–16, 20
+  parallel:
+    title: Woman
+    body:
+      - |
+        Jesus calls his mother not “Mother”
+        but “Woman” — the name of Eve
+        before the Fall
+      - italic: |
+          Mary is the Woman of the first Gospel,
+          at enmity with the serpent (Gen 3:15)
+    refs: CCC 410–411, 726
+  fulfillment:
+    title: “Woman”
+    body:
+      - word: γύναι
+        reading: gynai
+      - |
+        at Cana:
+        “Woman, … my hour has not yet come”
+      - |
+        at the Cross, when the hour has come:
+        “Woman, behold, your son!”
+    refs: Jn 2:4; 19:26
+
+# ── The Throne of David ─────────────────────────────────────────
+
+- section: The Throne of David
+  subtitle: the king and the queen mother
+
+- type:
+    title: Solomon
+    subtitle: son of David, king of Israel
+    body:
+      - seated on the throne of David
+      - italic: |
+          God's promise to David's son:
+          “I will establish the throne
+          of his kingdom for ever”
+    refs: 2 Sam 7:12–16 · 1 Kgs 2:12
+  parallel:
+    title: The King
+    body:
+      - |
+        the promise to David's son
+        is fulfilled in the everlasting
+        reign of Christ
+    refs: Mt 1:1 · Lk 1:32–33 · CCC 439
+  fulfillment:
+    title: Christ the King
+    subtitle: Jesus, Son of David
+    body:
+      - italic: |
+          “the Lord God will give to him
+          the throne of his father David …
+          and of his kingdom there will be no end”
+    refs: Lk 1:32–33
+
+- type:
+    title: Bathsheba
+    subtitle: mother of King Solomon
+    body:
+      - word: גְּבִירָה
+        reading: gebirah, “great lady”
+      - |
+        in the house of David the queen
+        was the king's mother, not his wife:
+        Solomon had 700 wives, but one mother
+      - italic: |
+          the king rises to meet her, bows,
+          and sets a throne for her at his right hand;
+          she brings petitions to the king
+    refs: 1 Kgs 2:19–20; 11:3; 15:13 · Jer 13:18
+  parallel:
+    title: The Queen Mother
+    body:
+      - |
+        the Son of David reigns for ever,
+        and the queen of his kingdom
+        is his mother
+      - italic: |
+          as Bathsheba brought petitions to Solomon,
+          Mary brings our needs to her Son
+    refs: Jn 2:3 · CCC 966, 969 · _Ad Caeli Reginam_
+  fulfillment:
+    title: Queen of Heaven
+    subtitle: Mary, mother of the King
+    body:
+      - |
+        Elizabeth greets her as
+        “the mother of my Lord”
+      - italic: |
+          “a woman clothed with the sun …
+          on her head a crown of twelve stars”
+      - |
+        assumed into heaven and “exalted
+        by the Lord as Queen over all things”
+    refs: Lk 1:43 · Rev 12:1 · CCC 966
+
+# ── The Ark of the Covenant ─────────────────────────────────────
+
+- section: The Ark of the Covenant
+  subtitle: God's dwelling among his people
+
+- type:
+    title: The Ark
+    subtitle: of the covenant, in the Holy of Holies
+    body:
+      - |
+        a chest overlaid with gold;
+        above it, between the cherubim,
+        God met with his people
+      - italic: “There I will meet with you”
+    refs: Ex 25:10–22 · 1 Kgs 8:6–11
+  parallel:
+    title: The New Ark
+    body:
+      - |
+        the ark held God's presence
+        among his people; for nine months
+        God himself dwelt within Mary
+      - italic: |
+          Mary is “the ark of the covenant,
+          the place where the glory of the Lord dwells”
+    refs: "CCC 2676 · Litany of Loreto: “Ark of the Covenant”"
+  fulfillment:
+    title: Mary
+    subtitle: the living ark
+    body:
+      - |
+        God makes his dwelling not in a chest
+        of wood and gold, but in her womb
+      - italic: |
+          “the Word became flesh
+          and dwelt among us”
+      - word: ἐσκήνωσεν
+        reading: eskēnōsen, “pitched his tent”
+    refs: Jn 1:14 · Lk 1:31
+
+- type:
+    title: What the Ark Held
+    body:
+      - |
+        **the tablets of the Law**\
+        the word of God, written in stone
+      - |
+        **a golden jar of manna**\
+        bread from heaven in the wilderness
+      - |
+        **Aaron's rod that budded**\
+        sign of the true priesthood
+    refs: Heb 9:4 · Deut 10:5 · Ex 16:33–34 · Num 17:8–10
+  parallel:
+    title: What She Carried
+    body:
+      - |
+        the ark carried signs;
+        Mary carried the One they signified
+      - italic: |
+          the Law  →  the Word\
+          the manna  →  the Bread of Life\
+          the priestly rod  →  the High Priest
+    refs: Heb 9:4
+  fulfillment:
+    title: What Mary Carried
+    body:
+      - |
+        **the Word of God**\
+        made flesh
+      - |
+        **the living bread**\
+        come down from heaven
+      - |
+        **the eternal high priest**\
+        who holds his priesthood for ever
+    refs: Jn 1:14 · Jn 6:51 · Heb 4:14; 7:24
+
+- type:
+    title: The Glory Cloud
+    subtitle: over the tabernacle
+    body:
+      - italic: |
+          “the cloud covered the tent of meeting,
+          and the glory of the LORD
+          filled the tabernacle”
+      - word: ἐπεσκίαζεν
+        reading: epeskiazen, “overshadowed”
+    refs: Ex 40:34–35 (LXX)
+  parallel:
+    title: Overshadowed
+    body:
+      - |
+        the same Greek verb describes
+        the glory cloud over the tabernacle
+        and the Spirit over Mary
+      - italic: |
+          where God's glory rests,
+          there God dwells
+    refs: Ex 40:35 (LXX) · Lk 1:35 · CCC 697
+  fulfillment:
+    title: The Annunciation
+    subtitle: over the Virgin
+    body:
+      - italic: |
+          “The Holy Spirit will come upon you,
+          and the power of the Most High
+          will overshadow you”
+      - word: ἐπισκιάσει
+        reading: episkiasei, “will overshadow”
+    refs: Lk 1:35
+
+- type:
+    title: A Holy Vessel
+    body:
+      - |
+        made of acacia, “wood that does not decay”
+        in the Greek, overlaid with pure gold
+        within and without
+      - |
+        so holy that Uzzah,
+        touching it, was struck dead
+      - italic: |
+          “Arise, O LORD, and go to thy resting place,
+          thou and the ark of thy might”
+    refs: Ex 25:10–11 (LXX) · 2 Sam 6:6–7 · Ps 132:8
+  parallel:
+    title: Incorruptible
+    body:
+      - |
+        Pius XII: the ark of incorruptible wood
+        is “a type of the most pure body
+        of the Virgin Mary,” preserved
+        from the corruption of the tomb
+    refs: _Munificentissimus Deus_ 26 · Ps 132:8
+  fulfillment:
+    title: Full of Grace
+    subtitle: immaculate, and assumed into heaven
+    body:
+      - |
+        preserved from every stain
+        of sin from her conception
+      - |
+        at the end of her earthly life,
+        taken body and soul into heavenly glory
+    refs: Lk 1:28 · CCC 491–492, 966
+
+- type:
+    title: The Lost Ark
+    body:
+      - |
+        before the Babylonian exile,
+        Jeremiah hid the ark in a cave
+      - italic: |
+          “The place shall be unknown
+          until God gathers his people
+          together again”
+    refs: 2 Macc 2:4–8
+  parallel:
+    title: The Ark Revealed
+    body:
+      - |
+        John sees the lost ark in heaven,
+        and the very next thing he sees
+        is the Woman
+      - italic: |
+          the chapter break between them
+          was added only in the 13th century
+    refs: Rev 11:19 – 12:1
+  fulfillment:
+    title: The Ark in Heaven
+    body:
+      - italic: |
+          “God's temple in heaven was opened,
+          and the ark of his covenant
+          was seen within his temple …”
+      - italic: |
+          “And a great portent appeared in heaven,
+          a woman clothed with the sun”
+    refs: Rev 11:19 – 12:1
+
+# ── The Ark Goes Up to Judah ────────────────────────────────────
+
+- section: The Ark Goes Up to Judah
+  subtitle: 2 Samuel 6 and the Visitation, Luke 1:39–56
+
+- type:
+    title: David Sets Out
+    body:
+      - italic: |
+          “David arose and went …
+          to bring up from there the ark of God”
+      - from Baale-judah, in Judah
+    refs: 2 Sam 6:2 · 1 Chr 13:6
+  parallel:
+    title: Arose and Went
+    body:
+      - |
+        the same words open both journeys,
+        and both go into Judah
+    refs: 2 Sam 6:2 · Lk 1:39
+  fulfillment:
+    title: Mary Sets Out
+    body:
+      - italic: |
+          “Mary arose and went with haste
+          into the hill country,
+          to a city of Judah”
+    refs: Lk 1:39
+
+- type:
+    title: David Asks
+    body:
+      - afraid of the LORD after Uzzah's death
+      - italic: |
+          “How can the ark of the LORD
+          come to me?”
+    refs: 2 Sam 6:9
+  parallel:
+    title: “Come to Me?”
+    body:
+      - |
+        David asks how the ark could come to him;
+        Elizabeth asks the same of Mary
+      - italic: |
+          “Mary's visitation to Elizabeth thus became
+          a visit from God to his people”
+    refs: 2 Sam 6:9 · Lk 1:43 · CCC 717
+  fulfillment:
+    title: Elizabeth Asks
+    body:
+      - italic: |
+          “why is this granted me,
+          that the mother of my Lord
+          should come to me?”
+    refs: Lk 1:43
+
+- type:
+    title: David Dances
+    body:
+      - italic: |
+          “David danced before the LORD
+          with all his might”
+      - |
+        “leaping and dancing before the LORD,”
+        while the Levites raise their voices
+        with music before the ark
+    refs: 2 Sam 6:14–16 · 1 Chr 15:28; 16:4–5
+  parallel:
+    title: Leaping for Joy
+    body:
+      - |
+        David leaps before the ark;
+        John leaps before the One
+        whom Mary carries
+    refs: 2 Sam 6:16 · Lk 1:41, 44
+  fulfillment:
+    title: John Leaps
+    body:
+      - italic: |
+          “the babe in my womb
+          leaped for joy”
+      - |
+        Elizabeth “exclaimed with a loud cry”:
+        a rare Greek verb that the LXX uses
+        for the Levites' music before the ark
+      - word: ἀνεφώνησεν
+        reading: anephōnēsen
+    refs: Lk 1:41–44 · cf. 1 Chr 15:28 (LXX)
+
+- type:
+    title: Three Months
+    subtitle: in the house of Obed-edom
+    body:
+      - italic: |
+          “the ark of the LORD remained
+          in the house of Obed-edom … three months;
+          and the LORD blessed Obed-edom
+          and all his household”
+    refs: 2 Sam 6:10–12
+  parallel:
+    title: A House Blessed
+    body:
+      - |
+        the ark stays three months
+        and blesses the house that receives it;
+        so does Mary
+    refs: 2 Sam 6:11 · Lk 1:41–42, 56
+  fulfillment:
+    title: Three Months
+    subtitle: in the house of Zechariah
+    body:
+      - italic: |
+          “Mary remained with her
+          about three months”
+      - |
+        Elizabeth is “filled with the Holy Spirit”:
+        “Blessed are you among women”
+    refs: Lk 1:40–42, 56
+
+# ── The footer ─────────────────────────────────────────────────
+
+notes:
+  - Scripture quotations follow the RSV.  CCC = Catechism of the Catholic Church.  LXX = Septuagint, the Greek Old Testament.
+  - St. Justin Martyr, _Dialogue with Trypho_ 100 · St. Irenaeus, _Against Heresies_ III.22.4
+  - Pius XII, _Munificentissimus Deus_ (1950) and _Ad Caeli Reginam_ (1954)

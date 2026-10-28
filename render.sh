@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Render every .dot file here to NAME.svg (zoomable) and NAME.png (raster).
+# Build everything from content.yaml: the web page (index.html), and each
+# poster as NAME.svg (zoomable) and NAME.png (raster).
 #
 #   ./render.sh          # PNGs at 150 dpi
 #   ./render.sh 300      # PNGs at 300 dpi (print quality)
@@ -8,6 +9,9 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 dpi="${1:-150}"
+
+# content.yaml → poster.dot, poster-wide.dot, index.html
+python3 build.py
 
 for src in *.dot; do
   name="${src%.dot}"

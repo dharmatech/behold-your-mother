@@ -1,1 +1,3 @@
 *.png
+# Generated from content.yaml by build.py.
+*.dot
