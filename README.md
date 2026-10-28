@@ -1,10 +1,12 @@
-# Theology poster
+# Behold Your Mother
 
-Parallels in Catholic theology, written once and published in three forms:
+How the Old Testament foreshadows Christ and his Mother: Eve, the queen mother, the Ark of the Covenant and Rachel, set beside their fulfillment in the New Testament. Written once and published in three forms:
 
 - `index.html`: a web page for reading on a phone. Sections fold open, and each parallel opens into its three cards.
-- `poster.svg`: a tall poster with one panel (~26 × 72 in)
-- `poster-wide.svg`: a wide poster with two panels side by side (~49 × 47 in)
+- `poster.svg`: a tall poster with one panel (~26 × 100 in)
+- `poster-wide.svg`: a wide poster with two panels side by side (~49 × 60 in)
+
+`notes/origins.md` holds the first notes the project grew from.
 
 All three are built from **`content.yaml`**, the one place where the content lives.
 
