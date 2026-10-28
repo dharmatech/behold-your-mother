@@ -82,6 +82,14 @@ A card has a `title`, an optional `subtitle`, a `body` and `refs`. Write titles 
 
 `build.py` stops with an error if a reference points to a verse that doesn't exist.
 
+**Quotes.** Bible quotes are word for word from the BSB, so they match the verses that unfold on the web page. `build.py` checks every “…” quote in a body item against the BSB text of that item's `ref:`, or of the card's `refs:` if the item has none, and stops with an error listing any that don't match. Use `…` to leave words out. Only the first letter's capitalization may change; note that the BSB capitalizes pronouns for God ("He", "His"). The check skips:
+
+- references marked `(LXX)`, where the card renders the Greek
+- books the BSB doesn't have, such as 2 Maccabees, quoted from the RSV instead
+- one-word quotes, which name a word rather than quote a verse
+
+A quote from somewhere other than the Bible (the Catechism, a Father, a pope) needs its own `ref:` naming that source, such as `ref: CCC 966`, so it isn't checked against the card's Bible references.
+
 **Line breaks.** Graphviz does not wrap text, so break the lines yourself, as they should appear on the poster. Multi-line text goes after `|`. On the web page those lines run together and wrap to fit the screen. If a break should stay on the web page as well, as in a list, end the line with `\`.
 
 **Markup.** Use `**bold**` and `_italic_`.

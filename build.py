@@ -93,6 +93,48 @@ def check_card(card):
                                "italic:, word: with reading:, or by:, each with an optional ref:")
 
 
+def check_quotes(data, bible):
+    """Every quote on a card must be word for word in the BSB text of the verses it cites.
+
+    A body item is checked against its own ref:, or, if it has none, the card's
+    refs:. Each “…” quote, split at any …, must appear in one of those passages;
+    only its first letter may differ in case. Not checked: passages marked
+    (LXX), books the BSB lacks, refs with no Bible passage (a quote from the
+    Catechism, say), and one-word quotes, which name a word rather than quote.
+    """
+    problems = []
+    for section in data["sections"]:
+        for parallel in section["parallels"]:
+            for role in COLUMNS:
+                card = parallel[role]
+                for item in card.get("body", []):
+                    if isinstance(item, str):
+                        item = {"text": item}
+                    text = item.get("text") or item.get("italic")
+                    if not text:
+                        continue
+                    passages = [part for part in scripture.parse(item.get("ref") or card.get("refs") or "")
+                                if isinstance(part, scripture.Passage) and not part.lxx and bible.has(part.book)]
+                    verses = [quote_key(bible.text(passage)) for passage in passages]
+                    for quote in re.findall(r"“([^”]*)”", text) if passages else []:
+                        for piece in quote.split("…"):
+                            piece = quote_key(piece).strip(" ,.;:!?—")
+                            if len(piece.split()) < 2:
+                                continue
+                            if not any(v in t for v in (piece, piece[0].swapcase() + piece[1:]) for t in verses):
+                                problems.append(f"card “{card['title']}”: “{piece}” is not in "
+                                                + " · ".join(passage.label for passage in passages))
+    if problems:
+        raise ContentError("these quotes don't match the BSB word for word:\n  " + "\n  ".join(problems))
+
+
+def quote_key(text):
+    """Text reduced for comparing quotes: no markup, quotation marks or apostrophes, and single spaces."""
+    text = re.sub(r"<[^>]+>|\*\*|\\(?=\n)|(?<!\w)_|_(?!\w)|[‘’“”'\"]", "", text)
+    text = re.sub(r"\s*—\s*", " — ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def slug(title):
     """“The New Adam” → new-adam"""
     ascii_title = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
@@ -789,7 +831,9 @@ PAGE = """\
 def main():
     try:
         data = load(HERE / "content.yaml")
-        page = web(data, scripture.Bible(HERE / "bsb"))
+        bible = scripture.Bible(HERE / "bsb")
+        page = web(data, bible)
+        check_quotes(data, bible)
     except (ContentError, scripture.ReferenceError_) as e:
         raise SystemExit(f"content.yaml: {e}")
     for name, panels in POSTERS.items():

@@ -224,6 +224,12 @@ class Bible:
             self._books[book] = parse_usfm(self.files[book].read_text(encoding="utf-8-sig"))
         return self._books[book]
 
+    def text(self, passage):
+        """The passage's verses as plain text, for checking quotes against."""
+        return html.unescape(" ".join(
+            re.sub(r"<[^>]+>", "", s.html) for s in self.segments(passage.book)
+            if s.verse and passage.contains(s.chapter, s.verse)))
+
     def render(self, passage):
         """The passage as HTML: blocks of text with verse numbers, and … where verses are skipped."""
         segments = self.segments(passage.book)
