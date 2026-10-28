@@ -1,3 +1,5 @@
 *.png
 # Generated from content.yaml by build.py.
 *.dot
+# The Berean Standard Bible in USFM; see README.md.
+bsb/

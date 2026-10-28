@@ -4,7 +4,8 @@
     python3 build.py      # writes poster.dot, poster-wide.dot and index.html
 
 render.sh runs this first, then renders the .dot files with Graphviz.
-Needs PyYAML (Debian/Ubuntu: python3-yaml; elsewhere: pip install pyyaml).
+Needs PyYAML (Debian/Ubuntu: python3-yaml; elsewhere: pip install pyyaml),
+and the Berean Standard Bible in bsb/ for the verse text (see README.md).
 """
 
 import html
@@ -14,6 +15,8 @@ import unicodedata
 from pathlib import Path
 
 import yaml
+
+import scripture
 
 HERE = Path(__file__).parent
 
@@ -37,7 +40,8 @@ COLUMNS = {
 }
 
 CARD_KEYS = {"title", "subtitle", "body", "refs"}
-BODY_KINDS = [{"italic"}, {"word", "reading"}, {"by"}]
+# A body item is plain text, or one of these; any of them may also have a ref:.
+BODY_KINDS = [{"text"}, {"italic"}, {"word", "reading"}, {"by"}]
 
 
 # ── Reading content.yaml ─────────────────────────────────────
@@ -84,9 +88,9 @@ def check_card(card):
     if "title" not in card or not CARD_KEYS >= set(card):
         raise ContentError(f"card “{title}”: needs a title, and may only have {sorted(CARD_KEYS)}")
     for item in card.get("body", []):
-        if not isinstance(item, str) and set(item) not in BODY_KINDS:
-            raise ContentError(f"card “{title}”: body item {item} should be text, "
-                               "italic:, word: with reading:, or by:")
+        if not isinstance(item, str) and set(item) - {"ref"} not in BODY_KINDS:
+            raise ContentError(f"card “{title}”: body item {item} should be text, text:, "
+                               "italic:, word: with reading:, or by:, each with an optional ref:")
 
 
 def slug(title):
@@ -171,6 +175,8 @@ def dot_card(name, card, col, group):
     for item in card.get("body", []):
         if isinstance(item, str):
             rows.append(row(dot_text(item)))
+        elif "text" in item:
+            rows.append(row(dot_text(item["text"])))
         elif "italic" in item:
             rows.append(row(f"<I>{dot_text(item['italic'])}</I>"))
         elif "word" in item:
@@ -333,7 +339,52 @@ def word_attrs(word):
     return ""
 
 
-def web_card(role, card):
+class References:
+    """Turns a line of references into buttons and links for the web page.
+
+    Each Bible reference becomes a button that unfolds its verses in a panel
+    right below the line it is on. Catechism numbers link to the paragraph.
+    """
+
+    def __init__(self, bible):
+        self.bible = bible
+        self.count = itertools.count(1)
+
+    def render(self, line):
+        """(inline HTML, [panel HTML]) for a line of references."""
+        inline, panels = [], []
+        for part in scripture.parse(line):
+            if isinstance(part, scripture.Passage):
+                pid = f"v{next(self.count)}"
+                inline.append(("cf. " if part.cf else "")
+                              + f'<button type="button" class="ref" aria-expanded="false" '
+                              f'aria-controls="{pid}">{html.escape(part.label)}</button>')
+                panels.append(self.panel(pid, part))
+            elif isinstance(part, scripture.Catechism):
+                inline.append("CCC " + ", ".join(
+                    f'<a href="{part.url(n)}" target="_blank" rel="noopener">{n}</a>' for n in part.numbers))
+            else:
+                inline.append(web_text(part.text))
+        return " · ".join(inline), panels
+
+    def panel(self, pid, passage):
+        if self.bible.has(passage.book):
+            verses = self.bible.render(passage)
+        else:
+            verses = (f'<p class="note">{scripture.NAMES[passage.book]} is not in the {self.bible.name}, '
+                      "which has only the 66 books of the Protestant canon.</p>")
+        note = ""
+        if passage.lxx:
+            note = ('<p class="note">The card points to the Greek Septuagint (LXX). '
+                    f"The {self.bible.abbreviation} translates the Hebrew, so its wording may differ.</p>")
+        return (f'          <div class="passage" id="{pid}" hidden>'
+                f'<p class="where">{html.escape(passage.heading)}'
+                f'<abbr title="{self.bible.name}">{self.bible.abbreviation}</abbr></p>'
+                f'{verses}{note}'
+                f'<button type="button" class="close" aria-controls="{pid}">Close</button></div>')
+
+
+def web_card(role, card, refs):
     col = COLUMNS[role]
     out = [
         f'        <article class="card {role}">',
@@ -344,21 +395,32 @@ def web_card(role, card):
         out.append(f'          <p class="sub">{web_text(card["subtitle"])}</p>')
     for item in card.get("body", []):
         if isinstance(item, str):
-            out.append(f"          <p>{web_text(item)}</p>")
+            item = {"text": item}
+        if "text" in item:
+            line, attrs = web_text(item["text"]), ""
         elif "italic" in item:
-            out.append(f'          <p class="italic">{web_text(item["italic"])}</p>')
+            line, attrs = web_text(item["italic"]), ' class="italic"'
         elif "word" in item:
-            out.append(f'          <p class="word"><span{word_attrs(item["word"])}>{web_text(item["word"])}</span> '
-                       f'<i>{web_text(item["reading"])}</i></p>')
-        elif "by" in item:
-            out.append(f'          <p class="by">— {web_text(item["by"])}</p>')
+            line, attrs = (f'<span{word_attrs(item["word"])}>{web_text(item["word"])}</span> '
+                           f'<i>{web_text(item["reading"])}</i>'), ' class="word"'
+        else:
+            line, attrs = f'— {web_text(item["by"])}', ' class="by"'
+        panels = []
+        if item.get("ref"):
+            cite, panels = refs.render(item["ref"])
+            line += f' <span class="cite">{cite}</span>'
+        out.append(f"          <p{attrs}>{line}</p>")
+        out += panels
     if card.get("refs"):
-        out.append(f'          <p class="refs">{web_text(card["refs"])}</p>')
+        line, panels = refs.render(card["refs"])
+        out.append(f'          <p class="refs">{line}</p>')
+        out += panels
     out.append("        </article>")
     return out
 
 
-def web(data):
+def web(data, bible):
+    refs = References(bible)
     body = []
     for n, s in enumerate(data["sections"], 1):
         count = len(s["parallels"])
@@ -384,11 +446,11 @@ def web(data):
                 "        </span>",
                 "      </summary>",
                 '      <div class="cards">',
-                *web_card("type", p["type"]),
+                *web_card("type", p["type"], refs),
                 '        <div class="link" aria-hidden="true"></div>',
-                *web_card("parallel", p["parallel"]),
+                *web_card("parallel", p["parallel"], refs),
                 '        <div class="link arrow" aria-hidden="true"></div>',
-                *web_card("fulfillment", p["fulfillment"]),
+                *web_card("fulfillment", p["fulfillment"], refs),
                 "      </div>",
                 "    </details>",
             ]
@@ -580,6 +642,64 @@ PAGE = """\
     font-size: 14.5px;
   }
 
+  /* References: a Bible reference unfolds its verses; a Catechism number is a link */
+  .cite { margin-left: 0.2em; color: var(--accent); font-size: 14.5px; font-style: normal; }
+  .refs a, .cite a { color: inherit; text-underline-offset: 3px; }
+  button.ref {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    margin: -4px -2px;
+    padding: 4px 2px;
+    cursor: pointer;
+    text-decoration: underline dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  button.ref[aria-expanded="true"] { font-weight: 700; text-decoration-style: solid; }
+
+  .passage {
+    margin: 10px -4px 0;
+    padding: 12px 14px 6px;
+    border: 1px solid color-mix(in srgb, var(--line) 45%, transparent);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--bg) 65%, var(--fill));
+    text-align: left;
+    font-size: 16.5px;
+    line-height: 1.55;
+  }
+  .card .passage p { margin: 0 0 8px; }
+  .card .passage .where { margin-bottom: 6px; font-size: 15px; font-weight: 700; }
+  .passage abbr {
+    margin-left: 0.5em;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .passage sup { margin-right: 3px; font-size: 11px; font-weight: 700; color: var(--accent); }
+  .card .passage :is(.q1, .q2, .li1, .li2) { margin: 0; }
+  .passage .q2, .passage .li2 { padding-left: 1.5em; }
+  .passage .li1 { padding-left: 0.75em; }
+  .card .passage .stanza { margin-top: 8px; }
+  .card .passage :is(.q1, .q2, .li1, .li2):has(+ :not(.q1, .q2, .li1, .li2)) { margin-bottom: 8px; }
+  .card .passage .gap { margin: -2px 0 6px; text-align: center; color: var(--accent); }
+  .card .passage .note { font-size: 14px; font-style: italic; color: var(--accent); }
+  .passage .close {
+    display: block;
+    margin: 0 -4px 0 auto;
+    padding: 4px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--accent);
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
   @media (min-width: 900px) {
     .cards { grid-template-columns: 1fr 34px 1fr 34px 1fr; padding: 18px; }
     .link, .link.arrow { justify-self: stretch; align-self: center; width: auto; height: 4px; margin: 0; }
@@ -620,6 +740,9 @@ PAGE = """\
 <footer class="notes">
   <p class="posters">See it all as a poster: {{posters}}</p>
 {{notes}}
+    <p>Tap a Bible reference to read its verses, from the
+      <a href="https://berean.bible" target="_blank" rel="noopener">Berean Standard Bible</a> (public domain).
+      Catechism numbers link to the text at scborromeo.org.</p>
 </footer>
 </div>
 <script>
@@ -642,6 +765,18 @@ PAGE = """\
     const summary = e.target.closest("summary");
     if (summary && !summary.parentElement.open) history.replaceState(null, "", "#" + summary.parentElement.id);
   });
+
+  // A Bible reference unfolds its verses; tapping it again, or Close, folds them away.
+  document.addEventListener("click", e => {
+    const button = e.target.closest("button.ref, button.close");
+    if (!button) return;
+    const panel = document.getElementById(button.getAttribute("aria-controls"));
+    const ref = document.querySelector(`button.ref[aria-controls="${panel.id}"]`);
+    const open = button.classList.contains("ref") && panel.hidden;
+    panel.hidden = !open;
+    ref.setAttribute("aria-expanded", open);
+    if (!open && button !== ref) ref.scrollIntoView({ block: "nearest" });
+  });
 </script>
 </body>
 </html>
@@ -654,12 +789,13 @@ PAGE = """\
 def main():
     try:
         data = load(HERE / "content.yaml")
-    except ContentError as e:
+        page = web(data, scripture.Bible(HERE / "bsb"))
+    except (ContentError, scripture.ReferenceError_) as e:
         raise SystemExit(f"content.yaml: {e}")
     for name, panels in POSTERS.items():
         (HERE / f"{name}.dot").write_text(dot(data, panels))
         print(f"{name}.dot")
-    (HERE / "index.html").write_text(web(data))
+    (HERE / "index.html").write_text(page)
     print("index.html")
 
 

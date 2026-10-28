@@ -165,6 +165,64 @@
     font-size: 14.5px;
   }
 
+  /* References: a Bible reference unfolds its verses; a Catechism number is a link */
+  .cite { margin-left: 0.2em; color: var(--accent); font-size: 14.5px; font-style: normal; }
+  .refs a, .cite a { color: inherit; text-underline-offset: 3px; }
+  button.ref {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    margin: -4px -2px;
+    padding: 4px 2px;
+    cursor: pointer;
+    text-decoration: underline dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  button.ref[aria-expanded="true"] { font-weight: 700; text-decoration-style: solid; }
+
+  .passage {
+    margin: 10px -4px 0;
+    padding: 12px 14px 6px;
+    border: 1px solid color-mix(in srgb, var(--line) 45%, transparent);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--bg) 65%, var(--fill));
+    text-align: left;
+    font-size: 16.5px;
+    line-height: 1.55;
+  }
+  .card .passage p { margin: 0 0 8px; }
+  .card .passage .where { margin-bottom: 6px; font-size: 15px; font-weight: 700; }
+  .passage abbr {
+    margin-left: 0.5em;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .passage sup { margin-right: 3px; font-size: 11px; font-weight: 700; color: var(--accent); }
+  .card .passage :is(.q1, .q2, .li1, .li2) { margin: 0; }
+  .passage .q2, .passage .li2 { padding-left: 1.5em; }
+  .passage .li1 { padding-left: 0.75em; }
+  .card .passage .stanza { margin-top: 8px; }
+  .card .passage :is(.q1, .q2, .li1, .li2):has(+ :not(.q1, .q2, .li1, .li2)) { margin-bottom: 8px; }
+  .card .passage .gap { margin: -2px 0 6px; text-align: center; color: var(--accent); }
+  .card .passage .note { font-size: 14px; font-style: italic; color: var(--accent); }
+  .passage .close {
+    display: block;
+    margin: 0 -4px 0 auto;
+    padding: 4px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--accent);
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
   @media (min-width: 900px) {
     .cards { grid-template-columns: 1fr 34px 1fr 34px 1fr; padding: 18px; }
     .link, .link.arrow { justify-self: stretch; align-self: center; width: auto; height: 4px; margin: 0; }
@@ -220,24 +278,34 @@
           <p class="role">Old Covenant · the type</p>
           <h3>Adam</h3>
           <p>the first man, formed from the dust of the ground</p>
-          <p class="italic">“by one man's disobedience many were made sinners”</p>
-          <p class="refs">Gen 2:7 · Rom 5:12, 19</p>
+          <p class="italic">“by one man's disobedience many were made sinners” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v1">Rom 5:19</button></span></p>
+          <div class="passage" id="v1" hidden><p class="where">Romans 5:19<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>19</sup>For just as through the disobedience of the one man the many were made sinners, so also through the obedience of the one man the many will be made righteous.</p><button type="button" class="close" aria-controls="v1">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v2">Gen 2:7</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v3">Rom 5:12, 19</button></p>
+          <div class="passage" id="v2" hidden><p class="where">Genesis 2:7<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>7</sup>Then the LORD God formed man from the dust of the ground and breathed the breath of life into his nostrils, and the man became a living being.</p><button type="button" class="close" aria-controls="v2">Close</button></div>
+          <div class="passage" id="v3" hidden><p class="where">Romans 5:12, 19<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>12</sup>Therefore, just as sin entered the world through one man, and death through sin, so also death was passed on to all men, because all sinned.</p><p class="gap">…</p><p class="p"><sup>19</sup>For just as through the disobedience of the one man the many were made sinners, so also through the obedience of the one man the many will be made righteous.</p><button type="button" class="close" aria-controls="v3">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>The New Adam</h3>
-          <p>Adam “was a type of the one who was to come”</p>
-          <p class="italic">“The first man Adam became a living being; the last Adam became a life-giving spirit.”</p>
-          <p class="refs">Rom 5:14 · 1 Cor 15:22, 45 · CCC 411, 504</p>
+          <p>Adam “was a type of the one who was to come” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v4">Rom 5:14</button></span></p>
+          <div class="passage" id="v4" hidden><p class="where">Romans 5:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>Nevertheless, death reigned from Adam until Moses, even over those who did not sin in the way that Adam transgressed. He is a pattern of the One to come.</p><button type="button" class="close" aria-controls="v4">Close</button></div>
+          <p class="italic">“The first man Adam became a living being; the last Adam became a life-giving spirit.” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v5">1 Cor 15:45</button></span></p>
+          <div class="passage" id="v5" hidden><p class="where">1 Corinthians 15:45<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>45</sup>So it is written: “The first man Adam became a living being”; the last Adam a life-giving spirit.</p><button type="button" class="close" aria-controls="v5">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v6">Rom 5:14</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v7">1 Cor 15:22, 45</button> · CCC <a href="https://www.scborromeo.org/ccc/para/411.htm" target="_blank" rel="noopener">411</a>, <a href="https://www.scborromeo.org/ccc/para/504.htm" target="_blank" rel="noopener">504</a></p>
+          <div class="passage" id="v6" hidden><p class="where">Romans 5:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>Nevertheless, death reigned from Adam until Moses, even over those who did not sin in the way that Adam transgressed. He is a pattern of the One to come.</p><button type="button" class="close" aria-controls="v6">Close</button></div>
+          <div class="passage" id="v7" hidden><p class="where">1 Corinthians 15:22, 45<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>22</sup>For as in Adam all die, so in Christ all will be made alive.</p><p class="gap">…</p><p class="p"><sup>45</sup>So it is written: “The first man Adam became a living being”; the last Adam a life-giving spirit.</p><button type="button" class="close" aria-controls="v7">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Jesus Christ</h3>
           <p>the last Adam, the man from heaven, who begins the new creation</p>
-          <p class="italic">“by one man's obedience many will be made righteous”</p>
-          <p class="refs">Rom 5:19 · 1 Cor 15:47</p>
+          <p class="italic">“by one man's obedience many will be made righteous” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v8">Rom 5:19</button></span></p>
+          <div class="passage" id="v8" hidden><p class="where">Romans 5:19<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>19</sup>For just as through the disobedience of the one man the many were made sinners, so also through the obedience of the one man the many will be made righteous.</p><button type="button" class="close" aria-controls="v8">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v9">Rom 5:19</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v10">1 Cor 15:47</button></p>
+          <div class="passage" id="v9" hidden><p class="where">Romans 5:19<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>19</sup>For just as through the disobedience of the one man the many were made sinners, so also through the obedience of the one man the many will be made righteous.</p><button type="button" class="close" aria-controls="v9">Close</button></div>
+          <div class="passage" id="v10" hidden><p class="where">1 Corinthians 15:47<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>47</sup>The first man was of the dust of the earth, the second man from heaven.</p><button type="button" class="close" aria-controls="v10">Close</button></div>
         </article>
       </div>
     </details>
@@ -254,7 +322,8 @@
           <h3>Eve</h3>
           <p>the first woman, formed from Adam's side</p>
           <p class="italic">a virgin, she listened to the serpent and disobeyed</p>
-          <p class="refs">Gen 2:21–22; 3:1–6</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v11">Gen 2:21–22; 3:1–6</button></p>
+          <div class="passage" id="v11" hidden><p class="where">Genesis 2:21–22; 3:1–6<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2:21</sup>So the LORD God caused the man to fall into a deep sleep, and while he slept, He took one of the man’s ribs and closed up the area with flesh. <sup>22</sup>And from the rib that the LORD God had taken from the man, He made a woman and brought her to him.</p><p class="gap">…</p><p class="p"><sup>3:1</sup>Now the serpent was more crafty than any beast of the field that the LORD God had made. And he said to the woman, “Did God really say, ‘You must not eat from any tree in the garden?’”</p><p class="p stanza"><sup>2</sup>The woman answered the serpent, “We may eat the fruit of the trees of the garden, <sup>3</sup>but about the fruit of the tree in the middle of the garden, God has said, ‘You must not eat of it or touch it, or you will die.’”</p><p class="p stanza"><sup>4</sup>“You will not surely die,” the serpent told the woman. <sup>5</sup>“For God knows that in the day you eat of it, your eyes will be opened and you will be like God, knowing good and evil.”</p><p class="p stanza"><sup>6</sup>When the woman saw that the tree was good for food and pleasing to the eyes, and that it was desirable for obtaining wisdom, she took the fruit and ate it. She also gave some to her husband who was with her, and he ate it.</p><button type="button" class="close" aria-controls="v11">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -264,15 +333,17 @@
           <p class="by">— St. Irenaeus, c. 180</p>
           <p class="italic">“Death through Eve, life through Mary.”</p>
           <p class="by">— the Fathers</p>
-          <p class="refs">St. Justin, <i>Dialogue</i> 100 · CCC 411, 494, 726</p>
+          <p class="refs">St. Justin, <i>Dialogue</i> 100 · CCC <a href="https://www.scborromeo.org/ccc/para/411.htm" target="_blank" rel="noopener">411</a>, <a href="https://www.scborromeo.org/ccc/para/494.htm" target="_blank" rel="noopener">494</a>, <a href="https://www.scborromeo.org/ccc/para/726.htm" target="_blank" rel="noopener">726</a></p>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Mary</h3>
           <p>a virgin, she listened to the angel and obeyed</p>
-          <p class="italic">“let it be to me according to your word”</p>
-          <p class="refs">Lk 1:26–38</p>
+          <p class="italic">“let it be to me according to your word” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v12">Lk 1:38</button></span></p>
+          <div class="passage" id="v12" hidden><p class="where">Luke 1:38<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>38</sup>“I am the Lord’s servant,” Mary answered. “May it happen to me according to your word.” Then the angel left her.</p><button type="button" class="close" aria-controls="v12">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v13">Lk 1:26–38</button></p>
+          <div class="passage" id="v13" hidden><p class="where">Luke 1:26–38<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>26</sup>In the sixth month, God sent the angel Gabriel to a town in Galilee called Nazareth, <sup>27</sup>to a virgin pledged in marriage to a man named Joseph, who was of the house of David. And the virgin’s name was Mary. <sup>28</sup>The angel appeared to her and said, “Greetings, you who are highly favored! The Lord is with you.”</p><p class="p stanza"><sup>29</sup>Mary was greatly troubled at his words and wondered what kind of greeting this might be. <sup>30</sup>So the angel told her, “Do not be afraid, Mary, for you have found favor with God. <sup>31</sup>Behold, you will conceive and give birth to a son, and you are to give Him the name Jesus. <sup>32</sup>He will be great and will be called the Son of the Most High. The Lord God will give Him the throne of His father David, <sup>33</sup>and He will reign over the house of Jacob forever. His kingdom will never end!”</p><p class="p stanza"><sup>34</sup>“How can this be,” Mary asked the angel, “since I am a virgin?”</p><p class="p stanza"><sup>35</sup>The angel replied, “The Holy Spirit will come upon you, and the power of the Most High will overshadow you. So the Holy One to be born will be called the Son of God. <sup>36</sup>Look, even Elizabeth your relative has conceived a son in her old age, and she who was called barren is in her sixth month. <sup>37</sup>For no word from God will ever fail.”</p><p class="p stanza"><sup>38</sup>“I am the Lord’s servant,” Mary answered. “May it happen to me according to your word.” Then the angel left her.</p><button type="button" class="close" aria-controls="v13">Close</button></div>
         </article>
       </div>
     </details>
@@ -288,9 +359,11 @@
           <p class="role">Old Covenant · the type</p>
           <h3>The First Sin</h3>
           <p class="sub">in the garden of Eden</p>
-          <p>Eve takes the fruit and eats; “she also gave some to her husband … and he ate”</p>
+          <p>Eve takes the fruit and eats; “she also gave some to her husband … and he ate” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v14">Gen 3:6</button></span></p>
+          <div class="passage" id="v14" hidden><p class="where">Genesis 3:6<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>When the woman saw that the tree was good for food and pleasing to the eyes, and that it was desirable for obtaining wisdom, she took the fruit and ate it. She also gave some to her husband who was with her, and he ate it.</p><button type="button" class="close" aria-controls="v14">Close</button></div>
           <p class="italic">their eyes are opened: shame, exile from the garden, death</p>
-          <p class="refs">Gen 3:6–7, 19, 23</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v15">Gen 3:6–7, 19, 23</button></p>
+          <div class="passage" id="v15" hidden><p class="where">Genesis 3:6–7, 19, 23<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>When the woman saw that the tree was good for food and pleasing to the eyes, and that it was desirable for obtaining wisdom, she took the fruit and ate it. She also gave some to her husband who was with her, and he ate it.</p><p class="p stanza"><sup>7</sup>And the eyes of both of them were opened, and they knew that they were naked; so they sewed together fig leaves and made coverings for themselves.</p><p class="gap">…</p><p class="q1"><sup>19</sup>By the sweat of your brow</p><p class="q2">you will eat your bread,</p><p class="q1">until you return to the ground—</p><p class="q2">because out of it were you taken.</p><p class="q1">For dust you are,</p><p class="q2">and to dust you shall return.”</p><p class="gap">…</p><p class="p"><sup>23</sup>Therefore the LORD God banished him from the Garden of Eden to work the ground from which he had been taken.</p><button type="button" class="close" aria-controls="v15">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -298,17 +371,23 @@
           <h3>At Her Urging</h3>
           <p>In Eden, at Eve's urging, Adam commits the <b>first sin</b>.</p>
           <p>At Cana, at Mary's urging, Jesus performs his <b>first sign</b>.</p>
-          <p class="italic">Eve led her husband away from God's word; Mary points to it: “Do whatever he tells you.”</p>
-          <p class="refs">Gen 3:6 · Jn 2:3–5, 11 · CCC 1613, 2618</p>
+          <p class="italic">Eve led her husband away from God's word; Mary points to it: “Do whatever he tells you.” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v16">Jn 2:5</button></span></p>
+          <div class="passage" id="v16" hidden><p class="where">John 2:5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>5</sup>His mother said to the servants, “Do whatever He tells you.”</p><button type="button" class="close" aria-controls="v16">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v17">Gen 3:6</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v18">Jn 2:3–5, 11</button> · CCC <a href="https://www.scborromeo.org/ccc/para/1613.htm" target="_blank" rel="noopener">1613</a>, <a href="https://www.scborromeo.org/ccc/para/2618.htm" target="_blank" rel="noopener">2618</a></p>
+          <div class="passage" id="v17" hidden><p class="where">Genesis 3:6<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>When the woman saw that the tree was good for food and pleasing to the eyes, and that it was desirable for obtaining wisdom, she took the fruit and ate it. She also gave some to her husband who was with her, and he ate it.</p><button type="button" class="close" aria-controls="v17">Close</button></div>
+          <div class="passage" id="v18" hidden><p class="where">John 2:3–5, 11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>3</sup>When the wine ran out, Jesus’ mother said to Him, “They have no more wine.”</p><p class="p stanza"><sup>4</sup>“Woman, what is that to you and to Me?” Jesus replied. “My hour has not yet come.”</p><p class="p stanza"><sup>5</sup>His mother said to the servants, “Do whatever He tells you.”</p><p class="gap">…</p><p class="p"><sup>11</sup>Jesus performed this, the first of His signs, at Cana in Galilee. He thus revealed His glory, and His disciples believed in Him.</p><button type="button" class="close" aria-controls="v18">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>The First Sign</h3>
           <p class="sub">the wedding at Cana</p>
-          <p>at the wedding feast Mary tells him, “They have no wine,” and tells the servants, “Do whatever he tells you”</p>
-          <p class="italic">water becomes wine, “the first of his signs”: he “manifested his glory; and his disciples believed in him”</p>
-          <p class="refs">Jn 2:1–11</p>
+          <p>at the wedding feast Mary tells him, “They have no wine,” and tells the servants, “Do whatever he tells you” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v19">Jn 2:3, 5</button></span></p>
+          <div class="passage" id="v19" hidden><p class="where">John 2:3, 5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>3</sup>When the wine ran out, Jesus’ mother said to Him, “They have no more wine.”</p><p class="gap">…</p><p class="p"><sup>5</sup>His mother said to the servants, “Do whatever He tells you.”</p><button type="button" class="close" aria-controls="v19">Close</button></div>
+          <p class="italic">water becomes wine, “the first of his signs”: he “manifested his glory; and his disciples believed in him” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v20">Jn 2:11</button></span></p>
+          <div class="passage" id="v20" hidden><p class="where">John 2:11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>11</sup>Jesus performed this, the first of His signs, at Cana in Galilee. He thus revealed His glory, and His disciples believed in Him.</p><button type="button" class="close" aria-controls="v20">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v21">Jn 2:1–11</button></p>
+          <div class="passage" id="v21" hidden><p class="where">John 2:1–11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>1</sup>On the third day a wedding took place at Cana in Galilee. Jesus’ mother was there, <sup>2</sup>and Jesus and His disciples had also been invited to the wedding. <sup>3</sup>When the wine ran out, Jesus’ mother said to Him, “They have no more wine.”</p><p class="p stanza"><sup>4</sup>“Woman, what is that to you and to Me?” Jesus replied. “My hour has not yet come.”</p><p class="p stanza"><sup>5</sup>His mother said to the servants, “Do whatever He tells you.”</p><p class="p stanza"><sup>6</sup>Now six stone water jars had been set there for the Jewish rites of purification. Each could hold from twenty to thirty gallons. <sup>7</sup>Jesus told the servants, “Fill the jars with water.”</p><p class="p stanza">So they filled them to the brim.</p><p class="p stanza"><sup>8</sup>“Now draw some out,” He said, “and take it to the master of the banquet.”</p><p class="p stanza">They did so, <sup>9</sup>and the master of the banquet tasted the water that had been turned into wine. He did not know where it was from, but the servants who had drawn the water knew. Then he called the bridegroom aside <sup>10</sup>and said, “Everyone serves the fine wine first, and then the cheap wine after the guests are drunk. But you have saved the fine wine until now!”</p><p class="p stanza"><sup>11</sup>Jesus performed this, the first of His signs, at Cana in Galilee. He thus revealed His glory, and His disciples believed in Him.</p><button type="button" class="close" aria-controls="v21">Close</button></div>
         </article>
       </div>
     </details>
@@ -324,10 +403,14 @@
           <p class="role">Old Covenant · the type</p>
           <h3>“Woman”</h3>
           <p class="word"><span lang="he" dir="rtl">אִשָּׁה</span> <i>’ishshah</i></p>
-          <p>“she shall be called Woman, because she was taken out of Man”</p>
-          <p>through the whole story of the Fall she is simply “the woman” — only afterward is she named Eve</p>
-          <p class="italic">“I will put enmity between you and the woman, and between your seed and her seed”</p>
-          <p class="refs">Gen 2:23; 3:1–16, 20</p>
+          <p>“she shall be called Woman, because she was taken out of Man” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v22">Gen 2:23</button></span></p>
+          <div class="passage" id="v22" hidden><p class="where">Genesis 2:23<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>23</sup>And the man said:</p><p class="q1 stanza">“This is now bone of my bones</p><p class="q2">and flesh of my flesh;</p><p class="q1">she shall be called ‘woman,’</p><p class="q2">for out of man she was taken.”</p><button type="button" class="close" aria-controls="v22">Close</button></div>
+          <p>through the whole story of the Fall she is simply “the woman” — only afterward is she named Eve <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v23">Gen 3:20</button></span></p>
+          <div class="passage" id="v23" hidden><p class="where">Genesis 3:20<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>20</sup>And Adam named his wife Eve, because she would be the mother of all the living.</p><button type="button" class="close" aria-controls="v23">Close</button></div>
+          <p class="italic">“I will put enmity between you and the woman, and between your seed and her seed” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v24">Gen 3:15</button></span></p>
+          <div class="passage" id="v24" hidden><p class="where">Genesis 3:15<abbr title="Berean Standard Bible">BSB</abbr></p><p class="q1"><sup>15</sup>And I will put enmity between you and the woman,</p><p class="q2">and between your seed and her seed.</p><p class="q1">He will crush your head,</p><p class="q2">and you will strike his heel.”</p><button type="button" class="close" aria-controls="v24">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v25">Gen 2:23; 3:1–16, 20</button></p>
+          <div class="passage" id="v25" hidden><p class="where">Genesis 2:23; 3:1–16, 20<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2:23</sup>And the man said:</p><p class="q1 stanza">“This is now bone of my bones</p><p class="q2">and flesh of my flesh;</p><p class="q1">she shall be called ‘woman,’</p><p class="q2">for out of man she was taken.”</p><p class="gap">…</p><p class="p"><sup>3:1</sup>Now the serpent was more crafty than any beast of the field that the LORD God had made. And he said to the woman, “Did God really say, ‘You must not eat from any tree in the garden?’”</p><p class="p stanza"><sup>2</sup>The woman answered the serpent, “We may eat the fruit of the trees of the garden, <sup>3</sup>but about the fruit of the tree in the middle of the garden, God has said, ‘You must not eat of it or touch it, or you will die.’”</p><p class="p stanza"><sup>4</sup>“You will not surely die,” the serpent told the woman. <sup>5</sup>“For God knows that in the day you eat of it, your eyes will be opened and you will be like God, knowing good and evil.”</p><p class="p stanza"><sup>6</sup>When the woman saw that the tree was good for food and pleasing to the eyes, and that it was desirable for obtaining wisdom, she took the fruit and ate it. She also gave some to her husband who was with her, and he ate it.</p><p class="p stanza"><sup>7</sup>And the eyes of both of them were opened, and they knew that they were naked; so they sewed together fig leaves and made coverings for themselves.</p><p class="p stanza"><sup>8</sup>Then the man and his wife heard the voice of the LORD God walking in the garden in the breeze of the day, and they hid themselves from the presence of the LORD God among the trees of the garden.</p><p class="p stanza"><sup>9</sup>But the LORD God called out to the man, “Where are you?”</p><p class="p stanza"><sup>10</sup>“I heard Your voice in the garden,” he replied, “and I was afraid because I was naked; so I hid myself.”</p><p class="p stanza"><sup>11</sup>“Who told you that you were naked?” asked the LORD God. “Have you eaten from the tree of which I commanded you not to eat?”</p><p class="p stanza"><sup>12</sup>And the man answered, “The woman whom You gave me, she gave me fruit from the tree, and I ate it.”</p><p class="p stanza"><sup>13</sup>Then the LORD God said to the woman, “What is this you have done?”</p><p class="p stanza">“The serpent deceived me,” she replied, “and I ate.”</p><p class="p stanza"><sup>14</sup>So the LORD God said to the serpent:</p><p class="q1 stanza">“Because you have done this,</p><p class="q2">cursed are you above all livestock</p><p class="q2">and every beast of the field!</p><p class="q1">On your belly will you go,</p><p class="q2">and dust you will eat,</p><p class="q2">all the days of your life.</p><p class="q1"><sup>15</sup>And I will put enmity between you and the woman,</p><p class="q2">and between your seed and her seed.</p><p class="q1">He will crush your head,</p><p class="q2">and you will strike his heel.”</p><p class="p stanza"><sup>16</sup>To the woman He said:</p><p class="q1 stanza">“I will sharply increase your pain in childbirth;</p><p class="q2">in pain you will bring forth children.</p><p class="q1">Your desire will be for your husband,</p><p class="q2">and he will rule over you.”</p><p class="gap">…</p><p class="p"><sup>20</sup>And Adam named his wife Eve, because she would be the mother of all the living.</p><button type="button" class="close" aria-controls="v25">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -335,16 +418,19 @@
           <h3>Woman</h3>
           <p>Jesus calls his mother not “Mother” but “Woman” — the name of Eve before the Fall</p>
           <p class="italic">Mary is the Woman of the first Gospel, at enmity with the serpent (Gen 3:15)</p>
-          <p class="refs">CCC 410–411, 726</p>
+          <p class="refs">CCC <a href="https://www.scborromeo.org/ccc/para/410.htm" target="_blank" rel="noopener">410–411</a>, <a href="https://www.scborromeo.org/ccc/para/726.htm" target="_blank" rel="noopener">726</a></p>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>“Woman”</h3>
           <p class="word"><span lang="grc">γύναι</span> <i>gynai</i></p>
-          <p>at Cana: “Woman, … my hour has not yet come”</p>
-          <p>at the Cross, when the hour has come: “Woman, behold, your son!”</p>
-          <p class="refs">Jn 2:4; 19:26</p>
+          <p>at Cana: “Woman, … my hour has not yet come” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v26">Jn 2:4</button></span></p>
+          <div class="passage" id="v26" hidden><p class="where">John 2:4<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>4</sup>“Woman, what is that to you and to Me?” Jesus replied. “My hour has not yet come.”</p><button type="button" class="close" aria-controls="v26">Close</button></div>
+          <p>at the Cross, when the hour has come: “Woman, behold, your son!” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v27">Jn 19:26</button></span></p>
+          <div class="passage" id="v27" hidden><p class="where">John 19:26<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>26</sup>When Jesus saw His mother and the disciple whom He loved standing nearby, He said to His mother, “Woman, here is your son.”</p><button type="button" class="close" aria-controls="v27">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v28">Jn 2:4; 19:26</button></p>
+          <div class="passage" id="v28" hidden><p class="where">John 2:4; 19:26<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2:4</sup>“Woman, what is that to you and to Me?” Jesus replied. “My hour has not yet come.”</p><p class="gap">…</p><p class="p"><sup>19:26</sup>When Jesus saw His mother and the disciple whom He loved standing nearby, He said to His mother, “Woman, here is your son.”</p><button type="button" class="close" aria-controls="v28">Close</button></div>
         </article>
       </div>
     </details>
@@ -369,24 +455,32 @@
           <p class="role">Old Covenant · the type</p>
           <h3>Solomon</h3>
           <p class="sub">son of David, king of Israel</p>
-          <p>seated on the throne of David</p>
-          <p class="italic">God's promise to David's son: “I will establish the throne of his kingdom for ever”</p>
-          <p class="refs">2 Sam 7:12–16 · 1 Kgs 2:12</p>
+          <p>seated on the throne of David <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v29">1 Kgs 2:12</button></span></p>
+          <div class="passage" id="v29" hidden><p class="where">1 Kings 2:12<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>12</sup>So Solomon sat on the throne of his father David, and his kingdom was firmly established.</p><button type="button" class="close" aria-controls="v29">Close</button></div>
+          <p class="italic">God's promise to David's son: “I will establish the throne of his kingdom for ever” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v30">2 Sam 7:13</button></span></p>
+          <div class="passage" id="v30" hidden><p class="where">2 Samuel 7:13<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>13</sup>He will build a house for My Name, and I will establish the throne of his kingdom forever.</p><button type="button" class="close" aria-controls="v30">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v31">2 Sam 7:12–16</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v32">1 Kgs 2:12</button></p>
+          <div class="passage" id="v31" hidden><p class="where">2 Samuel 7:12–16<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>12</sup>And when your days are fulfilled and you rest with your fathers, I will raise up your descendant after you, who will come from your own body, and I will establish his kingdom. <sup>13</sup>He will build a house for My Name, and I will establish the throne of his kingdom forever. <sup>14</sup>I will be his Father, and he will be My son. When he does wrong, I will discipline him with the rod of men and with the blows of the sons of men.</p><p class="p stanza"><sup>15</sup>But My loving devotion will never be removed from him as I removed it from Saul, whom I removed from before you. <sup>16</sup>Your house and kingdom will endure forever before Me, and your throne will be established forever.”</p><button type="button" class="close" aria-controls="v31">Close</button></div>
+          <div class="passage" id="v32" hidden><p class="where">1 Kings 2:12<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>12</sup>So Solomon sat on the throne of his father David, and his kingdom was firmly established.</p><button type="button" class="close" aria-controls="v32">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>The King</h3>
           <p>the promise to David's son is fulfilled in the everlasting reign of Christ</p>
-          <p class="refs">Mt 1:1 · Lk 1:32–33 · CCC 439</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v33">Mt 1:1</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v34">Lk 1:32–33</button> · CCC <a href="https://www.scborromeo.org/ccc/para/439.htm" target="_blank" rel="noopener">439</a></p>
+          <div class="passage" id="v33" hidden><p class="where">Matthew 1:1<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>1</sup>This is the record of the genealogy of Jesus Christ, the son of David, the son of Abraham:</p><button type="button" class="close" aria-controls="v33">Close</button></div>
+          <div class="passage" id="v34" hidden><p class="where">Luke 1:32–33<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>32</sup>He will be great and will be called the Son of the Most High. The Lord God will give Him the throne of His father David, <sup>33</sup>and He will reign over the house of Jacob forever. His kingdom will never end!”</p><button type="button" class="close" aria-controls="v34">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Christ the King</h3>
           <p class="sub">Jesus, Son of David</p>
-          <p class="italic">“the Lord God will give to him the throne of his father David … and of his kingdom there will be no end”</p>
-          <p class="refs">Lk 1:32–33</p>
+          <p class="italic">“the Lord God will give to him the throne of his father David … and of his kingdom there will be no end” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v35">Lk 1:32–33</button></span></p>
+          <div class="passage" id="v35" hidden><p class="where">Luke 1:32–33<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>32</sup>He will be great and will be called the Son of the Most High. The Lord God will give Him the throne of His father David, <sup>33</sup>and He will reign over the house of Jacob forever. His kingdom will never end!”</p><button type="button" class="close" aria-controls="v35">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v36">Lk 1:32–33</button></p>
+          <div class="passage" id="v36" hidden><p class="where">Luke 1:32–33<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>32</sup>He will be great and will be called the Son of the Most High. The Lord God will give Him the throne of His father David, <sup>33</sup>and He will reign over the house of Jacob forever. His kingdom will never end!”</p><button type="button" class="close" aria-controls="v36">Close</button></div>
         </article>
       </div>
     </details>
@@ -403,9 +497,13 @@
           <h3>Bathsheba</h3>
           <p class="sub">mother of King Solomon</p>
           <p class="word"><span lang="he" dir="rtl">גְּבִירָה</span> <i>gebirah, “great lady”</i></p>
-          <p>in the house of David the queen was the king's mother, not his wife: Solomon had 700 wives, but one mother</p>
-          <p class="italic">the king rises to meet her, bows, and sets a throne for her at his right hand; she brings petitions to the king</p>
-          <p class="refs">1 Kgs 2:19–20; 11:3; 15:13 · Jer 13:18</p>
+          <p>in the house of David the queen was the king's mother, not his wife: Solomon had 700 wives, but one mother <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v37">1 Kgs 11:3</button></span></p>
+          <div class="passage" id="v37" hidden><p class="where">1 Kings 11:3<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>3</sup>He had seven hundred wives of royal birth and three hundred concubines—and his wives turned his heart away.</p><button type="button" class="close" aria-controls="v37">Close</button></div>
+          <p class="italic">the king rises to meet her, bows, and sets a throne for her at his right hand; she brings petitions to the king <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v38">1 Kgs 2:19–20</button></span></p>
+          <div class="passage" id="v38" hidden><p class="where">1 Kings 2:19–20<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>19</sup>So Bathsheba went to King Solomon to speak to him for Adonijah. The king stood up to greet her, bowed to her, and sat down on his throne. Then the king had a throne brought for his mother, who sat down at his right hand.</p><p class="p stanza"><sup>20</sup>“I have just one small request of you,” she said. “Do not deny me.”</p><p class="p stanza">“Make your request, my mother,” the king replied, “for I will not deny you.”</p><button type="button" class="close" aria-controls="v38">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v39">1 Kgs 2:19–20; 11:3; 15:13</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v40">Jer 13:18</button></p>
+          <div class="passage" id="v39" hidden><p class="where">1 Kings 2:19–20; 11:3; 15:13<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2:19</sup>So Bathsheba went to King Solomon to speak to him for Adonijah. The king stood up to greet her, bowed to her, and sat down on his throne. Then the king had a throne brought for his mother, who sat down at his right hand.</p><p class="p stanza"><sup>20</sup>“I have just one small request of you,” she said. “Do not deny me.”</p><p class="p stanza">“Make your request, my mother,” the king replied, “for I will not deny you.”</p><p class="gap">…</p><p class="p"><sup>11:3</sup>He had seven hundred wives of royal birth and three hundred concubines—and his wives turned his heart away.</p><p class="gap">…</p><p class="p"><sup>15:13</sup>He also removed his grandmother Maacah from her position as queen mother because she had made a detestable Asherah pole. Asa chopped down the pole and burned it in the Kidron Valley.</p><button type="button" class="close" aria-controls="v39">Close</button></div>
+          <div class="passage" id="v40" hidden><p class="where">Jeremiah 13:18<abbr title="Berean Standard Bible">BSB</abbr></p><p class="q1"><sup>18</sup>Say to the king</p><p class="q2">and to the queen mother:</p><p class="q1">“Take a lowly seat,</p><p class="q2">for your glorious crowns have fallen from your heads.”</p><button type="button" class="close" aria-controls="v40">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -413,17 +511,22 @@
           <h3>The Queen Mother</h3>
           <p>the Son of David reigns for ever, and the queen of his kingdom is his mother</p>
           <p class="italic">as Bathsheba brought petitions to Solomon, Mary brings our needs to her Son</p>
-          <p class="refs">Jn 2:3 · CCC 966, 969 · <i>Ad Caeli Reginam</i></p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v41">Jn 2:3</button> · CCC <a href="https://www.scborromeo.org/ccc/para/966.htm" target="_blank" rel="noopener">966</a>, <a href="https://www.scborromeo.org/ccc/para/969.htm" target="_blank" rel="noopener">969</a> · <i>Ad Caeli Reginam</i></p>
+          <div class="passage" id="v41" hidden><p class="where">John 2:3<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>3</sup>When the wine ran out, Jesus’ mother said to Him, “They have no more wine.”</p><button type="button" class="close" aria-controls="v41">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Queen of Heaven</h3>
           <p class="sub">Mary, mother of the King</p>
-          <p>Elizabeth greets her as “the mother of my Lord”</p>
-          <p class="italic">“a woman clothed with the sun … on her head a crown of twelve stars”</p>
-          <p>assumed into heaven and “exalted by the Lord as Queen over all things”</p>
-          <p class="refs">Lk 1:43 · Rev 12:1 · CCC 966</p>
+          <p>Elizabeth greets her as “the mother of my Lord” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v42">Lk 1:43</button></span></p>
+          <div class="passage" id="v42" hidden><p class="where">Luke 1:43<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>43</sup>And why am I so honored, that the mother of my Lord should come to me?</p><button type="button" class="close" aria-controls="v42">Close</button></div>
+          <p class="italic">“a woman clothed with the sun … on her head a crown of twelve stars” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v43">Rev 12:1</button></span></p>
+          <div class="passage" id="v43" hidden><p class="where">Revelation 12:1<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>1</sup>And a great sign appeared in heaven: a woman clothed in the sun, with the moon under her feet and a crown of twelve stars on her head.</p><button type="button" class="close" aria-controls="v43">Close</button></div>
+          <p>assumed into heaven and “exalted by the Lord as Queen over all things” <span class="cite">CCC <a href="https://www.scborromeo.org/ccc/para/966.htm" target="_blank" rel="noopener">966</a></span></p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v44">Lk 1:43</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v45">Rev 12:1</button> · CCC <a href="https://www.scborromeo.org/ccc/para/966.htm" target="_blank" rel="noopener">966</a></p>
+          <div class="passage" id="v44" hidden><p class="where">Luke 1:43<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>43</sup>And why am I so honored, that the mother of my Lord should come to me?</p><button type="button" class="close" aria-controls="v44">Close</button></div>
+          <div class="passage" id="v45" hidden><p class="where">Revelation 12:1<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>1</sup>And a great sign appeared in heaven: a woman clothed in the sun, with the moon under her feet and a crown of twelve stars on her head.</p><button type="button" class="close" aria-controls="v45">Close</button></div>
         </article>
       </div>
     </details>
@@ -449,16 +552,19 @@
           <h3>The Ark</h3>
           <p class="sub">of the covenant, in the Holy of Holies</p>
           <p>a chest overlaid with gold; above it, between the cherubim, God met with his people</p>
-          <p class="italic">“There I will meet with you”</p>
-          <p class="refs">Ex 25:10–22 · 1 Kgs 8:6–11</p>
+          <p class="italic">“There I will meet with you” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v46">Ex 25:22</button></span></p>
+          <div class="passage" id="v46" hidden><p class="where">Exodus 25:22<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>22</sup>And I will meet with you there above the mercy seat, between the two cherubim that are over the ark of the Testimony; I will speak with you about all that I command you regarding the Israelites.</p><button type="button" class="close" aria-controls="v46">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v47">Ex 25:10–22</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v48">1 Kgs 8:6–11</button></p>
+          <div class="passage" id="v47" hidden><p class="where">Exodus 25:10–22<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>10</sup>And they are to construct an ark of acacia wood, two and a half cubits long, a cubit and a half wide, and a cubit and a half high. <sup>11</sup>Overlay it with pure gold both inside and out, and make a gold molding around it.</p><p class="p stanza"><sup>12</sup>Cast four gold rings for it and fasten them to its four feet, two rings on one side and two on the other. <sup>13</sup>And make poles of acacia wood and overlay them with gold. <sup>14</sup>Insert the poles into the rings on the sides of the ark, in order to carry it. <sup>15</sup>The poles are to remain in the rings of the ark; they must not be removed. <sup>16</sup>And place inside the ark the Testimony, which I will give you.</p><p class="p stanza"><sup>17</sup>And you are to construct a mercy seat of pure gold, two and a half cubits long and a cubit and a half wide. <sup>18</sup>Make two cherubim of hammered gold at the ends of the mercy seat, <sup>19</sup>one cherub on one end and one on the other, all made from one piece of gold. <sup>20</sup>And the cherubim are to have wings that spread upward, overshadowing the mercy seat. The cherubim are to face each other, looking toward the mercy seat.</p><p class="p stanza"><sup>21</sup>Set the mercy seat atop the ark and put the Testimony that I will give you into the ark.</p><p class="p stanza"><sup>22</sup>And I will meet with you there above the mercy seat, between the two cherubim that are over the ark of the Testimony; I will speak with you about all that I command you regarding the Israelites.</p><button type="button" class="close" aria-controls="v47">Close</button></div>
+          <div class="passage" id="v48" hidden><p class="where">1 Kings 8:6–11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>Then the priests brought the ark of the covenant of the LORD to its place in the inner sanctuary of the temple, the Most Holy Place, beneath the wings of the cherubim. <sup>7</sup>For the cherubim spread their wings over the place of the ark and overshadowed the ark and its poles.</p><p class="p stanza"><sup>8</sup>The poles extended far enough that their ends were visible from the Holy Place in front of the inner sanctuary, but not from outside the Holy Place; and they are there to this day.</p><p class="p stanza"><sup>9</sup>There was nothing in the ark except the two stone tablets that Moses had placed in it at Horeb, where the LORD had made a covenant with the Israelites after they had come out of the land of Egypt.</p><p class="p stanza"><sup>10</sup>And when the priests came out of the Holy Place, the cloud filled the house of the LORD <sup>11</sup>so that the priests could not stand there to minister because of the cloud. For the glory of the LORD filled the house of the LORD.</p><button type="button" class="close" aria-controls="v48">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>The New Ark</h3>
           <p>the ark held God's presence among his people; for nine months God himself dwelt within Mary</p>
-          <p class="italic">Mary is “the ark of the covenant, the place where the glory of the Lord dwells”</p>
-          <p class="refs">CCC 2676 · Litany of Loreto: “Ark of the Covenant”</p>
+          <p class="italic">Mary is “the ark of the covenant, the place where the glory of the Lord dwells” <span class="cite">CCC <a href="https://www.scborromeo.org/ccc/para/2676.htm" target="_blank" rel="noopener">2676</a></span></p>
+          <p class="refs">CCC <a href="https://www.scborromeo.org/ccc/para/2676.htm" target="_blank" rel="noopener">2676</a> · Litany of Loreto: “Ark of the Covenant”</p>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
@@ -466,9 +572,12 @@
           <h3>Mary</h3>
           <p class="sub">the living ark</p>
           <p>God makes his dwelling not in a chest of wood and gold, but in her womb</p>
-          <p class="italic">“the Word became flesh and dwelt among us”</p>
+          <p class="italic">“the Word became flesh and dwelt among us” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v49">Jn 1:14</button></span></p>
+          <div class="passage" id="v49" hidden><p class="where">John 1:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>The Word became flesh and made His dwelling among us. We have seen His glory, the glory of the one and only Son from the Father, full of grace and truth.</p><button type="button" class="close" aria-controls="v49">Close</button></div>
           <p class="word"><span lang="grc">ἐσκήνωσεν</span> <i>eskēnōsen, “pitched his tent”</i></p>
-          <p class="refs">Jn 1:14 · Lk 1:31</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v50">Jn 1:14</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v51">Lk 1:31</button></p>
+          <div class="passage" id="v50" hidden><p class="where">John 1:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>The Word became flesh and made His dwelling among us. We have seen His glory, the glory of the one and only Son from the Father, full of grace and truth.</p><button type="button" class="close" aria-controls="v50">Close</button></div>
+          <div class="passage" id="v51" hidden><p class="where">Luke 1:31<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>31</sup>Behold, you will conceive and give birth to a son, and you are to give Him the name Jesus.</p><button type="button" class="close" aria-controls="v51">Close</button></div>
         </article>
       </div>
     </details>
@@ -483,10 +592,17 @@
         <article class="card type">
           <p class="role">Old Covenant · the type</p>
           <h3>What the Ark Held</h3>
-          <p><b>the tablets of the Law</b><br>the word of God, written in stone</p>
-          <p><b>a golden jar of manna</b><br>bread from heaven in the wilderness</p>
-          <p><b>Aaron's rod that budded</b><br>sign of the true priesthood</p>
-          <p class="refs">Heb 9:4 · Deut 10:5 · Ex 16:33–34 · Num 17:8–10</p>
+          <p><b>the tablets of the Law</b><br>the word of God, written in stone <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v52">Deut 10:5</button></span></p>
+          <div class="passage" id="v52" hidden><p class="where">Deuteronomy 10:5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>5</sup>and I went back down the mountain and placed the tablets in the ark I had made, as the LORD had commanded me; and there they have remained.</p><button type="button" class="close" aria-controls="v52">Close</button></div>
+          <p><b>a golden jar of manna</b><br>bread from heaven in the wilderness <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v53">Ex 16:33–34</button></span></p>
+          <div class="passage" id="v53" hidden><p class="where">Exodus 16:33–34<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>33</sup>So Moses told Aaron, “Take a jar and fill it with an omer of manna. Then place it before the LORD to be preserved for the generations to come.” <sup>34</sup>And Aaron placed it in front of the Testimony, to be preserved just as the LORD had commanded Moses.</p><button type="button" class="close" aria-controls="v53">Close</button></div>
+          <p><b>Aaron's rod that budded</b><br>sign of the true priesthood <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v54">Num 17:8–10</button></span></p>
+          <div class="passage" id="v54" hidden><p class="where">Numbers 17:8–10<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>8</sup>The next day Moses entered the Tent of the Testimony and saw that Aaron’s staff, representing the house of Levi, had sprouted, put forth buds, blossomed, and produced almonds. <sup>9</sup>Then Moses brought out all the staffs from the LORD’s presence to all the Israelites. They saw them, and each man took his own staff.</p><p class="p stanza"><sup>10</sup>The LORD said to Moses, “Put Aaron’s staff back in front of the Testimony, to be kept as a sign for the rebellious, so that you may put an end to their grumbling against Me, lest they die.”</p><button type="button" class="close" aria-controls="v54">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v55">Heb 9:4</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v56">Deut 10:5</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v57">Ex 16:33–34</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v58">Num 17:8–10</button></p>
+          <div class="passage" id="v55" hidden><p class="where">Hebrews 9:4<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>4</sup>containing the golden altar of incense and the gold-covered ark of the covenant. Inside the ark were the gold jar of manna, Aaron’s staff that had budded, and the stone tablets of the covenant.</p><button type="button" class="close" aria-controls="v55">Close</button></div>
+          <div class="passage" id="v56" hidden><p class="where">Deuteronomy 10:5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>5</sup>and I went back down the mountain and placed the tablets in the ark I had made, as the LORD had commanded me; and there they have remained.</p><button type="button" class="close" aria-controls="v56">Close</button></div>
+          <div class="passage" id="v57" hidden><p class="where">Exodus 16:33–34<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>33</sup>So Moses told Aaron, “Take a jar and fill it with an omer of manna. Then place it before the LORD to be preserved for the generations to come.” <sup>34</sup>And Aaron placed it in front of the Testimony, to be preserved just as the LORD had commanded Moses.</p><button type="button" class="close" aria-controls="v57">Close</button></div>
+          <div class="passage" id="v58" hidden><p class="where">Numbers 17:8–10<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>8</sup>The next day Moses entered the Tent of the Testimony and saw that Aaron’s staff, representing the house of Levi, had sprouted, put forth buds, blossomed, and produced almonds. <sup>9</sup>Then Moses brought out all the staffs from the LORD’s presence to all the Israelites. They saw them, and each man took his own staff.</p><p class="p stanza"><sup>10</sup>The LORD said to Moses, “Put Aaron’s staff back in front of the Testimony, to be kept as a sign for the rebellious, so that you may put an end to their grumbling against Me, lest they die.”</p><button type="button" class="close" aria-controls="v58">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -494,16 +610,23 @@
           <h3>What She Carried</h3>
           <p>the ark carried signs; Mary carried the One they signified</p>
           <p class="italic">the Law  →  the Word<br>the manna  →  the Bread of Life<br>the priestly rod  →  the High Priest</p>
-          <p class="refs">Heb 9:4</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v59">Heb 9:4</button></p>
+          <div class="passage" id="v59" hidden><p class="where">Hebrews 9:4<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>4</sup>containing the golden altar of incense and the gold-covered ark of the covenant. Inside the ark were the gold jar of manna, Aaron’s staff that had budded, and the stone tablets of the covenant.</p><button type="button" class="close" aria-controls="v59">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>What Mary Carried</h3>
-          <p><b>the Word of God</b><br>made flesh</p>
-          <p><b>the living bread</b><br>come down from heaven</p>
-          <p><b>the eternal high priest</b><br>who holds his priesthood for ever</p>
-          <p class="refs">Jn 1:14 · Jn 6:51 · Heb 4:14; 7:24</p>
+          <p><b>the Word of God</b><br>made flesh <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v60">Jn 1:14</button></span></p>
+          <div class="passage" id="v60" hidden><p class="where">John 1:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>The Word became flesh and made His dwelling among us. We have seen His glory, the glory of the one and only Son from the Father, full of grace and truth.</p><button type="button" class="close" aria-controls="v60">Close</button></div>
+          <p><b>the living bread</b><br>come down from heaven <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v61">Jn 6:51</button></span></p>
+          <div class="passage" id="v61" hidden><p class="where">John 6:51<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>51</sup>I am the living bread that came down from heaven. If anyone eats of this bread, he will live forever. And this bread, which I will give for the life of the world, is My flesh.”</p><button type="button" class="close" aria-controls="v61">Close</button></div>
+          <p><b>the eternal high priest</b><br>who holds his priesthood for ever <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v62">Heb 4:14; 7:24</button></span></p>
+          <div class="passage" id="v62" hidden><p class="where">Hebrews 4:14; 7:24<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>4:14</sup>Therefore, since we have a great high priest who has passed through the heavens, Jesus the Son of God, let us hold firmly to what we profess.</p><p class="gap">…</p><p class="p"><sup>7:24</sup>But because Jesus lives forever, He has a permanent priesthood.</p><button type="button" class="close" aria-controls="v62">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v63">Jn 1:14</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v64">Jn 6:51</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v65">Heb 4:14; 7:24</button></p>
+          <div class="passage" id="v63" hidden><p class="where">John 1:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>The Word became flesh and made His dwelling among us. We have seen His glory, the glory of the one and only Son from the Father, full of grace and truth.</p><button type="button" class="close" aria-controls="v63">Close</button></div>
+          <div class="passage" id="v64" hidden><p class="where">John 6:51<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>51</sup>I am the living bread that came down from heaven. If anyone eats of this bread, he will live forever. And this bread, which I will give for the life of the world, is My flesh.”</p><button type="button" class="close" aria-controls="v64">Close</button></div>
+          <div class="passage" id="v65" hidden><p class="where">Hebrews 4:14; 7:24<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>4:14</sup>Therefore, since we have a great high priest who has passed through the heavens, Jesus the Son of God, let us hold firmly to what we profess.</p><p class="gap">…</p><p class="p"><sup>7:24</sup>But because Jesus lives forever, He has a permanent priesthood.</p><button type="button" class="close" aria-controls="v65">Close</button></div>
         </article>
       </div>
     </details>
@@ -519,9 +642,11 @@
           <p class="role">Old Covenant · the type</p>
           <h3>The Glory Cloud</h3>
           <p class="sub">over the tabernacle</p>
-          <p class="italic">“the cloud covered the tent of meeting, and the glory of the LORD filled the tabernacle”</p>
+          <p class="italic">“the cloud covered the tent of meeting, and the glory of the LORD filled the tabernacle” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v66">Ex 40:34</button></span></p>
+          <div class="passage" id="v66" hidden><p class="where">Exodus 40:34<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>34</sup>Then the cloud covered the Tent of Meeting, and the glory of the LORD filled the tabernacle.</p><button type="button" class="close" aria-controls="v66">Close</button></div>
           <p class="word"><span lang="grc">ἐπεσκίαζεν</span> <i>epeskiazen, “overshadowed”</i></p>
-          <p class="refs">Ex 40:34–35 (LXX)</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v67">Ex 40:34–35 (LXX)</button></p>
+          <div class="passage" id="v67" hidden><p class="where">Exodus 40:34–35<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>34</sup>Then the cloud covered the Tent of Meeting, and the glory of the LORD filled the tabernacle. <sup>35</sup>Moses was unable to enter the Tent of Meeting because the cloud had settled on it, and the glory of the LORD filled the tabernacle.</p><p class="note">The card points to the Greek Septuagint (LXX). The BSB translates the Hebrew, so its wording may differ.</p><button type="button" class="close" aria-controls="v67">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -529,16 +654,20 @@
           <h3>Overshadowed</h3>
           <p>the same Greek verb describes the glory cloud over the tabernacle and the Spirit over Mary</p>
           <p class="italic">where God's glory rests, there God dwells</p>
-          <p class="refs">Ex 40:35 (LXX) · Lk 1:35 · CCC 697</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v68">Ex 40:35 (LXX)</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v69">Lk 1:35</button> · CCC <a href="https://www.scborromeo.org/ccc/para/697.htm" target="_blank" rel="noopener">697</a></p>
+          <div class="passage" id="v68" hidden><p class="where">Exodus 40:35<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>35</sup>Moses was unable to enter the Tent of Meeting because the cloud had settled on it, and the glory of the LORD filled the tabernacle.</p><p class="note">The card points to the Greek Septuagint (LXX). The BSB translates the Hebrew, so its wording may differ.</p><button type="button" class="close" aria-controls="v68">Close</button></div>
+          <div class="passage" id="v69" hidden><p class="where">Luke 1:35<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>35</sup>The angel replied, “The Holy Spirit will come upon you, and the power of the Most High will overshadow you. So the Holy One to be born will be called the Son of God.</p><button type="button" class="close" aria-controls="v69">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>The Annunciation</h3>
           <p class="sub">over the Virgin</p>
-          <p class="italic">“The Holy Spirit will come upon you, and the power of the Most High will overshadow you”</p>
+          <p class="italic">“The Holy Spirit will come upon you, and the power of the Most High will overshadow you” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v70">Lk 1:35</button></span></p>
+          <div class="passage" id="v70" hidden><p class="where">Luke 1:35<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>35</sup>The angel replied, “The Holy Spirit will come upon you, and the power of the Most High will overshadow you. So the Holy One to be born will be called the Son of God.</p><button type="button" class="close" aria-controls="v70">Close</button></div>
           <p class="word"><span lang="grc">ἐπισκιάσει</span> <i>episkiasei, “will overshadow”</i></p>
-          <p class="refs">Lk 1:35</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v71">Lk 1:35</button></p>
+          <div class="passage" id="v71" hidden><p class="where">Luke 1:35<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>35</sup>The angel replied, “The Holy Spirit will come upon you, and the power of the Most High will overshadow you. So the Holy One to be born will be called the Son of God.</p><button type="button" class="close" aria-controls="v71">Close</button></div>
         </article>
       </div>
     </details>
@@ -553,26 +682,34 @@
         <article class="card type">
           <p class="role">Old Covenant · the type</p>
           <h3>A Holy Vessel</h3>
-          <p>made of acacia, “wood that does not decay” in the Greek, overlaid with pure gold within and without</p>
-          <p>so holy that Uzzah, touching it, was struck dead</p>
-          <p class="italic">“Arise, O LORD, and go to thy resting place, thou and the ark of thy might”</p>
-          <p class="refs">Ex 25:10–11 (LXX) · 2 Sam 6:6–7 · Ps 132:8</p>
+          <p>made of acacia, “wood that does not decay” in the Greek, overlaid with pure gold within and without <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v72">Ex 25:10–11 (LXX)</button></span></p>
+          <div class="passage" id="v72" hidden><p class="where">Exodus 25:10–11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>10</sup>And they are to construct an ark of acacia wood, two and a half cubits long, a cubit and a half wide, and a cubit and a half high. <sup>11</sup>Overlay it with pure gold both inside and out, and make a gold molding around it.</p><p class="note">The card points to the Greek Septuagint (LXX). The BSB translates the Hebrew, so its wording may differ.</p><button type="button" class="close" aria-controls="v72">Close</button></div>
+          <p>so holy that Uzzah, touching it, was struck dead <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v73">2 Sam 6:6–7</button></span></p>
+          <div class="passage" id="v73" hidden><p class="where">2 Samuel 6:6–7<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>When they came to the threshing floor of Nacon, Uzzah reached out and took hold of the ark of God, because the oxen had stumbled. <sup>7</sup>And the anger of the LORD burned against Uzzah, and God struck him down on the spot for his irreverence, and he died there beside the ark of God.</p><button type="button" class="close" aria-controls="v73">Close</button></div>
+          <p class="italic">“Arise, O LORD, and go to thy resting place, thou and the ark of thy might” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v74">Ps 132:8</button></span></p>
+          <div class="passage" id="v74" hidden><p class="where">Psalm 132:8<abbr title="Berean Standard Bible">BSB</abbr></p><p class="q1"><sup>8</sup>Arise, O LORD, to Your resting place,</p><p class="q2">You and the ark of Your strength.</p><button type="button" class="close" aria-controls="v74">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v75">Ex 25:10–11 (LXX)</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v76">2 Sam 6:6–7</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v77">Ps 132:8</button></p>
+          <div class="passage" id="v75" hidden><p class="where">Exodus 25:10–11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>10</sup>And they are to construct an ark of acacia wood, two and a half cubits long, a cubit and a half wide, and a cubit and a half high. <sup>11</sup>Overlay it with pure gold both inside and out, and make a gold molding around it.</p><p class="note">The card points to the Greek Septuagint (LXX). The BSB translates the Hebrew, so its wording may differ.</p><button type="button" class="close" aria-controls="v75">Close</button></div>
+          <div class="passage" id="v76" hidden><p class="where">2 Samuel 6:6–7<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>When they came to the threshing floor of Nacon, Uzzah reached out and took hold of the ark of God, because the oxen had stumbled. <sup>7</sup>And the anger of the LORD burned against Uzzah, and God struck him down on the spot for his irreverence, and he died there beside the ark of God.</p><button type="button" class="close" aria-controls="v76">Close</button></div>
+          <div class="passage" id="v77" hidden><p class="where">Psalm 132:8<abbr title="Berean Standard Bible">BSB</abbr></p><p class="q1"><sup>8</sup>Arise, O LORD, to Your resting place,</p><p class="q2">You and the ark of Your strength.</p><button type="button" class="close" aria-controls="v77">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>Incorruptible</h3>
           <p>Pius XII: the ark of incorruptible wood is “a type of the most pure body of the Virgin Mary,” preserved from the corruption of the tomb</p>
-          <p class="refs"><i>Munificentissimus Deus</i> 26 · Ps 132:8</p>
+          <p class="refs"><i>Munificentissimus Deus</i> 26 · <button type="button" class="ref" aria-expanded="false" aria-controls="v78">Ps 132:8</button></p>
+          <div class="passage" id="v78" hidden><p class="where">Psalm 132:8<abbr title="Berean Standard Bible">BSB</abbr></p><p class="q1"><sup>8</sup>Arise, O LORD, to Your resting place,</p><p class="q2">You and the ark of Your strength.</p><button type="button" class="close" aria-controls="v78">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Full of Grace</h3>
           <p class="sub">immaculate, and assumed into heaven</p>
-          <p>preserved from every stain of sin from her conception</p>
-          <p>at the end of her earthly life, taken body and soul into heavenly glory</p>
-          <p class="refs">Lk 1:28 · CCC 491–492, 966</p>
+          <p>preserved from every stain of sin from her conception <span class="cite">CCC <a href="https://www.scborromeo.org/ccc/para/491.htm" target="_blank" rel="noopener">491</a></span></p>
+          <p>at the end of her earthly life, taken body and soul into heavenly glory <span class="cite">CCC <a href="https://www.scborromeo.org/ccc/para/966.htm" target="_blank" rel="noopener">966</a></span></p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v79">Lk 1:28</button> · CCC <a href="https://www.scborromeo.org/ccc/para/491.htm" target="_blank" rel="noopener">491–492</a>, <a href="https://www.scborromeo.org/ccc/para/966.htm" target="_blank" rel="noopener">966</a></p>
+          <div class="passage" id="v79" hidden><p class="where">Luke 1:28<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>28</sup>The angel appeared to her and said, “Greetings, you who are highly favored! The Lord is with you.”</p><button type="button" class="close" aria-controls="v79">Close</button></div>
         </article>
       </div>
     </details>
@@ -587,9 +724,12 @@
         <article class="card type">
           <p class="role">Old Covenant · the type</p>
           <h3>The Lost Ark</h3>
-          <p>before the Babylonian exile, Jeremiah hid the ark in a cave</p>
-          <p class="italic">“The place shall be unknown until God gathers his people together again”</p>
-          <p class="refs">2 Macc 2:4–8</p>
+          <p>before the Babylonian exile, Jeremiah hid the ark in a cave <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v80">2 Macc 2:4–5</button></span></p>
+          <div class="passage" id="v80" hidden><p class="where">2 Maccabees 2:4–5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="note">2 Maccabees is not in the Berean Standard Bible, which has only the 66 books of the Protestant canon.</p><button type="button" class="close" aria-controls="v80">Close</button></div>
+          <p class="italic">“The place shall be unknown until God gathers his people together again” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v81">2 Macc 2:7</button></span></p>
+          <div class="passage" id="v81" hidden><p class="where">2 Maccabees 2:7<abbr title="Berean Standard Bible">BSB</abbr></p><p class="note">2 Maccabees is not in the Berean Standard Bible, which has only the 66 books of the Protestant canon.</p><button type="button" class="close" aria-controls="v81">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v82">2 Macc 2:4–8</button></p>
+          <div class="passage" id="v82" hidden><p class="where">2 Maccabees 2:4–8<abbr title="Berean Standard Bible">BSB</abbr></p><p class="note">2 Maccabees is not in the Berean Standard Bible, which has only the 66 books of the Protestant canon.</p><button type="button" class="close" aria-controls="v82">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
@@ -597,15 +737,19 @@
           <h3>The Ark Revealed</h3>
           <p>John sees the lost ark in heaven, and the very next thing he sees is the Woman</p>
           <p class="italic">the chapter break between them was added only in the 13th century</p>
-          <p class="refs">Rev 11:19 – 12:1</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v83">Rev 11:19 – 12:1</button></p>
+          <div class="passage" id="v83" hidden><p class="where">Revelation 11:19 – 12:1<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>11:19</sup>Then the temple of God in heaven was opened, and the ark of His covenant appeared in His temple. And there were flashes of lightning, rumblings, peals of thunder, an earthquake, and a great hailstorm.</p><p class="p"><sup>12:1</sup>And a great sign appeared in heaven: a woman clothed in the sun, with the moon under her feet and a crown of twelve stars on her head.</p><button type="button" class="close" aria-controls="v83">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>The Ark in Heaven</h3>
-          <p class="italic">“God's temple in heaven was opened, and the ark of his covenant was seen within his temple …”</p>
-          <p class="italic">“And a great portent appeared in heaven, a woman clothed with the sun”</p>
-          <p class="refs">Rev 11:19 – 12:1</p>
+          <p class="italic">“God's temple in heaven was opened, and the ark of his covenant was seen within his temple …” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v84">Rev 11:19</button></span></p>
+          <div class="passage" id="v84" hidden><p class="where">Revelation 11:19<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>19</sup>Then the temple of God in heaven was opened, and the ark of His covenant appeared in His temple. And there were flashes of lightning, rumblings, peals of thunder, an earthquake, and a great hailstorm.</p><button type="button" class="close" aria-controls="v84">Close</button></div>
+          <p class="italic">“And a great portent appeared in heaven, a woman clothed with the sun” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v85">Rev 12:1</button></span></p>
+          <div class="passage" id="v85" hidden><p class="where">Revelation 12:1<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>1</sup>And a great sign appeared in heaven: a woman clothed in the sun, with the moon under her feet and a crown of twelve stars on her head.</p><button type="button" class="close" aria-controls="v85">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v86">Rev 11:19 – 12:1</button></p>
+          <div class="passage" id="v86" hidden><p class="where">Revelation 11:19 – 12:1<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>11:19</sup>Then the temple of God in heaven was opened, and the ark of His covenant appeared in His temple. And there were flashes of lightning, rumblings, peals of thunder, an earthquake, and a great hailstorm.</p><p class="p"><sup>12:1</sup>And a great sign appeared in heaven: a woman clothed in the sun, with the moon under her feet and a crown of twelve stars on her head.</p><button type="button" class="close" aria-controls="v86">Close</button></div>
         </article>
       </div>
     </details>
@@ -629,23 +773,30 @@
         <article class="card type">
           <p class="role">Old Covenant · the type</p>
           <h3>David Sets Out</h3>
-          <p class="italic">“David arose and went … to bring up from there the ark of God”</p>
+          <p class="italic">“David arose and went … to bring up from there the ark of God” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v87">2 Sam 6:2</button></span></p>
+          <div class="passage" id="v87" hidden><p class="where">2 Samuel 6:2<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2</sup>And he and all his troops set out for Baale of Judah to bring up from there the ark of God, which is called by the Name— the name of the LORD of Hosts, who is enthroned between the cherubim that are on it.</p><button type="button" class="close" aria-controls="v87">Close</button></div>
           <p>from Baale-judah, in Judah</p>
-          <p class="refs">2 Sam 6:2 · 1 Chr 13:6</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v88">2 Sam 6:2</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v89">1 Chr 13:6</button></p>
+          <div class="passage" id="v88" hidden><p class="where">2 Samuel 6:2<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2</sup>And he and all his troops set out for Baale of Judah to bring up from there the ark of God, which is called by the Name— the name of the LORD of Hosts, who is enthroned between the cherubim that are on it.</p><button type="button" class="close" aria-controls="v88">Close</button></div>
+          <div class="passage" id="v89" hidden><p class="where">1 Chronicles 13:6<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>6</sup>David and all Israel went up to Baalah of Judah (that is, Kiriath-jearim) to bring up from there the ark of God the LORD, who is enthroned between the cherubim—the ark that is called by the Name.</p><button type="button" class="close" aria-controls="v89">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>Arose and Went</h3>
           <p>the same words open both journeys, and both go into Judah</p>
-          <p class="refs">2 Sam 6:2 · Lk 1:39</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v90">2 Sam 6:2</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v91">Lk 1:39</button></p>
+          <div class="passage" id="v90" hidden><p class="where">2 Samuel 6:2<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>2</sup>And he and all his troops set out for Baale of Judah to bring up from there the ark of God, which is called by the Name— the name of the LORD of Hosts, who is enthroned between the cherubim that are on it.</p><button type="button" class="close" aria-controls="v90">Close</button></div>
+          <div class="passage" id="v91" hidden><p class="where">Luke 1:39<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>39</sup>In those days Mary got ready and hurried to a town in the hill country of Judah,</p><button type="button" class="close" aria-controls="v91">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Mary Sets Out</h3>
-          <p class="italic">“Mary arose and went with haste into the hill country, to a city of Judah”</p>
-          <p class="refs">Lk 1:39</p>
+          <p class="italic">“Mary arose and went with haste into the hill country, to a city of Judah” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v92">Lk 1:39</button></span></p>
+          <div class="passage" id="v92" hidden><p class="where">Luke 1:39<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>39</sup>In those days Mary got ready and hurried to a town in the hill country of Judah,</p><button type="button" class="close" aria-controls="v92">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v93">Lk 1:39</button></p>
+          <div class="passage" id="v93" hidden><p class="where">Luke 1:39<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>39</sup>In those days Mary got ready and hurried to a town in the hill country of Judah,</p><button type="button" class="close" aria-controls="v93">Close</button></div>
         </article>
       </div>
     </details>
@@ -661,23 +812,29 @@
           <p class="role">Old Covenant · the type</p>
           <h3>David Asks</h3>
           <p>afraid of the LORD after Uzzah's death</p>
-          <p class="italic">“How can the ark of the LORD come to me?”</p>
-          <p class="refs">2 Sam 6:9</p>
+          <p class="italic">“How can the ark of the LORD come to me?” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v94">2 Sam 6:9</button></span></p>
+          <div class="passage" id="v94" hidden><p class="where">2 Samuel 6:9<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>9</sup>That day David feared the LORD and asked, “How can the ark of the LORD ever come to me?”</p><button type="button" class="close" aria-controls="v94">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v95">2 Sam 6:9</button></p>
+          <div class="passage" id="v95" hidden><p class="where">2 Samuel 6:9<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>9</sup>That day David feared the LORD and asked, “How can the ark of the LORD ever come to me?”</p><button type="button" class="close" aria-controls="v95">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>“Come to Me?”</h3>
           <p>David asks how the ark could come to him; Elizabeth asks the same of Mary</p>
-          <p class="italic">“Mary's visitation to Elizabeth thus became a visit from God to his people”</p>
-          <p class="refs">2 Sam 6:9 · Lk 1:43 · CCC 717</p>
+          <p class="italic">“Mary's visitation to Elizabeth thus became a visit from God to his people” <span class="cite">CCC <a href="https://www.scborromeo.org/ccc/para/717.htm" target="_blank" rel="noopener">717</a></span></p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v96">2 Sam 6:9</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v97">Lk 1:43</button> · CCC <a href="https://www.scborromeo.org/ccc/para/717.htm" target="_blank" rel="noopener">717</a></p>
+          <div class="passage" id="v96" hidden><p class="where">2 Samuel 6:9<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>9</sup>That day David feared the LORD and asked, “How can the ark of the LORD ever come to me?”</p><button type="button" class="close" aria-controls="v96">Close</button></div>
+          <div class="passage" id="v97" hidden><p class="where">Luke 1:43<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>43</sup>And why am I so honored, that the mother of my Lord should come to me?</p><button type="button" class="close" aria-controls="v97">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Elizabeth Asks</h3>
-          <p class="italic">“why is this granted me, that the mother of my Lord should come to me?”</p>
-          <p class="refs">Lk 1:43</p>
+          <p class="italic">“why is this granted me, that the mother of my Lord should come to me?” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v98">Lk 1:43</button></span></p>
+          <div class="passage" id="v98" hidden><p class="where">Luke 1:43<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>43</sup>And why am I so honored, that the mother of my Lord should come to me?</p><button type="button" class="close" aria-controls="v98">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v99">Lk 1:43</button></p>
+          <div class="passage" id="v99" hidden><p class="where">Luke 1:43<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>43</sup>And why am I so honored, that the mother of my Lord should come to me?</p><button type="button" class="close" aria-controls="v99">Close</button></div>
         </article>
       </div>
     </details>
@@ -692,25 +849,37 @@
         <article class="card type">
           <p class="role">Old Covenant · the type</p>
           <h3>David Dances</h3>
-          <p class="italic">“David danced before the LORD with all his might”</p>
-          <p>“leaping and dancing before the LORD,” while the Levites raise their voices with music before the ark</p>
-          <p class="refs">2 Sam 6:14–16 · 1 Chr 15:28; 16:4–5</p>
+          <p class="italic">“David danced before the LORD with all his might” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v100">2 Sam 6:14</button></span></p>
+          <div class="passage" id="v100" hidden><p class="where">2 Samuel 6:14<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>And David, wearing a linen ephod, danced with all his might before the LORD,</p><button type="button" class="close" aria-controls="v100">Close</button></div>
+          <p>“leaping and dancing before the LORD,” while the Levites raise their voices with music before the ark <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v101">2 Sam 6:16</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v102">1 Chr 16:4–5</button></span></p>
+          <div class="passage" id="v101" hidden><p class="where">2 Samuel 6:16<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>16</sup>As the ark of the LORD was entering the City of David, Saul’s daughter Michal looked down from a window and saw King David leaping and dancing before the LORD, and she despised him in her heart.</p><button type="button" class="close" aria-controls="v101">Close</button></div>
+          <div class="passage" id="v102" hidden><p class="where">1 Chronicles 16:4–5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>4</sup>David appointed some of the Levites to minister before the ark of the LORD, to celebrate, to give thanks, and to praise the LORD, the God of Israel. <sup>5</sup>Asaph was the chief, Zechariah was second, then Jeiel, Shemiramoth, Jehiel, Mattithiah, Eliab, Benaiah, Obed-edom, and Jeiel. They were to play the harps and lyres, while Asaph sounded the cymbals</p><button type="button" class="close" aria-controls="v102">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v103">2 Sam 6:14–16</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v104">1 Chr 15:28; 16:4–5</button></p>
+          <div class="passage" id="v103" hidden><p class="where">2 Samuel 6:14–16<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>14</sup>And David, wearing a linen ephod, danced with all his might before the LORD, <sup>15</sup>while he and all the house of Israel brought up the ark of the LORD with shouting and the sounding of the ram’s horn.</p><p class="p stanza"><sup>16</sup>As the ark of the LORD was entering the City of David, Saul’s daughter Michal looked down from a window and saw King David leaping and dancing before the LORD, and she despised him in her heart.</p><button type="button" class="close" aria-controls="v103">Close</button></div>
+          <div class="passage" id="v104" hidden><p class="where">1 Chronicles 15:28; 16:4–5<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>15:28</sup>So all Israel brought up the ark of the covenant of the LORD with shouting, with the sounding of rams’ horns and trumpets, and with cymbals and the music of harps and lyres.</p><p class="gap">…</p><p class="p"><sup>16:4</sup>David appointed some of the Levites to minister before the ark of the LORD, to celebrate, to give thanks, and to praise the LORD, the God of Israel. <sup>5</sup>Asaph was the chief, Zechariah was second, then Jeiel, Shemiramoth, Jehiel, Mattithiah, Eliab, Benaiah, Obed-edom, and Jeiel. They were to play the harps and lyres, while Asaph sounded the cymbals</p><button type="button" class="close" aria-controls="v104">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>Leaping for Joy</h3>
           <p>David leaps before the ark; John leaps before the One whom Mary carries</p>
-          <p class="refs">2 Sam 6:16 · Lk 1:41, 44</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v105">2 Sam 6:16</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v106">Lk 1:41, 44</button></p>
+          <div class="passage" id="v105" hidden><p class="where">2 Samuel 6:16<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>16</sup>As the ark of the LORD was entering the City of David, Saul’s daughter Michal looked down from a window and saw King David leaping and dancing before the LORD, and she despised him in her heart.</p><button type="button" class="close" aria-controls="v105">Close</button></div>
+          <div class="passage" id="v106" hidden><p class="where">Luke 1:41, 44<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>41</sup>When Elizabeth heard Mary’s greeting, the baby leaped in her womb, and Elizabeth was filled with the Holy Spirit.</p><p class="gap">…</p><p class="p"><sup>44</sup>For as soon as the sound of your greeting reached my ears, the baby in my womb leaped for joy.</p><button type="button" class="close" aria-controls="v106">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>John Leaps</h3>
-          <p class="italic">“the babe in my womb leaped for joy”</p>
-          <p>Elizabeth “exclaimed with a loud cry”: a rare Greek verb that the LXX uses for the Levites' music before the ark</p>
+          <p class="italic">“the babe in my womb leaped for joy” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v107">Lk 1:44</button></span></p>
+          <div class="passage" id="v107" hidden><p class="where">Luke 1:44<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>44</sup>For as soon as the sound of your greeting reached my ears, the baby in my womb leaped for joy.</p><button type="button" class="close" aria-controls="v107">Close</button></div>
+          <p>Elizabeth “exclaimed with a loud cry”: a rare Greek verb that the LXX uses for the Levites' music before the ark <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v108">Lk 1:42</button> · cf. <button type="button" class="ref" aria-expanded="false" aria-controls="v109">1 Chr 15:28 (LXX)</button></span></p>
+          <div class="passage" id="v108" hidden><p class="where">Luke 1:42<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>42</sup>In a loud voice she exclaimed, “Blessed are you among women, and blessed is the fruit of your womb!</p><button type="button" class="close" aria-controls="v108">Close</button></div>
+          <div class="passage" id="v109" hidden><p class="where">1 Chronicles 15:28<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>28</sup>So all Israel brought up the ark of the covenant of the LORD with shouting, with the sounding of rams’ horns and trumpets, and with cymbals and the music of harps and lyres.</p><p class="note">The card points to the Greek Septuagint (LXX). The BSB translates the Hebrew, so its wording may differ.</p><button type="button" class="close" aria-controls="v109">Close</button></div>
           <p class="word"><span lang="grc">ἀνεφώνησεν</span> <i>anephōnēsen</i></p>
-          <p class="refs">Lk 1:41–44 · cf. 1 Chr 15:28 (LXX)</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v110">Lk 1:41–44</button> · cf. <button type="button" class="ref" aria-expanded="false" aria-controls="v111">1 Chr 15:28 (LXX)</button></p>
+          <div class="passage" id="v110" hidden><p class="where">Luke 1:41–44<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>41</sup>When Elizabeth heard Mary’s greeting, the baby leaped in her womb, and Elizabeth was filled with the Holy Spirit. <sup>42</sup>In a loud voice she exclaimed, “Blessed are you among women, and blessed is the fruit of your womb! <sup>43</sup>And why am I so honored, that the mother of my Lord should come to me? <sup>44</sup>For as soon as the sound of your greeting reached my ears, the baby in my womb leaped for joy.</p><button type="button" class="close" aria-controls="v110">Close</button></div>
+          <div class="passage" id="v111" hidden><p class="where">1 Chronicles 15:28<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>28</sup>So all Israel brought up the ark of the covenant of the LORD with shouting, with the sounding of rams’ horns and trumpets, and with cymbals and the music of harps and lyres.</p><p class="note">The card points to the Greek Septuagint (LXX). The BSB translates the Hebrew, so its wording may differ.</p><button type="button" class="close" aria-controls="v111">Close</button></div>
         </article>
       </div>
     </details>
@@ -726,24 +895,31 @@
           <p class="role">Old Covenant · the type</p>
           <h3>Three Months</h3>
           <p class="sub">in the house of Obed-edom</p>
-          <p class="italic">“the ark of the LORD remained in the house of Obed-edom … three months; and the LORD blessed Obed-edom and all his household”</p>
-          <p class="refs">2 Sam 6:10–12</p>
+          <p class="italic">“the ark of the LORD remained in the house of Obed-edom … three months; and the LORD blessed Obed-edom and all his household” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v112">2 Sam 6:11</button></span></p>
+          <div class="passage" id="v112" hidden><p class="where">2 Samuel 6:11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>11</sup>Thus the ark of the LORD remained in the house of Obed-edom the Gittite for three months, and the LORD blessed him and all his household.</p><button type="button" class="close" aria-controls="v112">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v113">2 Sam 6:10–12</button></p>
+          <div class="passage" id="v113" hidden><p class="where">2 Samuel 6:10–12<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>10</sup>So he was unwilling to move the ark of the LORD to the City of David; instead, he took it aside to the house of Obed-edom the Gittite. <sup>11</sup>Thus the ark of the LORD remained in the house of Obed-edom the Gittite for three months, and the LORD blessed him and all his household.</p><p class="p stanza"><sup>12</sup>Now it was reported to King David, “The LORD has blessed the house of Obed-edom and all that belongs to him, because of the ark of God.”</p><p class="p stanza">So David went and had the ark of God brought up from the house of Obed-edom into the City of David with rejoicing.</p><button type="button" class="close" aria-controls="v113">Close</button></div>
         </article>
         <div class="link" aria-hidden="true"></div>
         <article class="card parallel">
           <p class="role">The Parallel · what links them</p>
           <h3>A House Blessed</h3>
           <p>the ark stays three months and blesses the house that receives it; so does Mary</p>
-          <p class="refs">2 Sam 6:11 · Lk 1:41–42, 56</p>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v114">2 Sam 6:11</button> · <button type="button" class="ref" aria-expanded="false" aria-controls="v115">Lk 1:41–42, 56</button></p>
+          <div class="passage" id="v114" hidden><p class="where">2 Samuel 6:11<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>11</sup>Thus the ark of the LORD remained in the house of Obed-edom the Gittite for three months, and the LORD blessed him and all his household.</p><button type="button" class="close" aria-controls="v114">Close</button></div>
+          <div class="passage" id="v115" hidden><p class="where">Luke 1:41–42, 56<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>41</sup>When Elizabeth heard Mary’s greeting, the baby leaped in her womb, and Elizabeth was filled with the Holy Spirit. <sup>42</sup>In a loud voice she exclaimed, “Blessed are you among women, and blessed is the fruit of your womb!</p><p class="gap">…</p><p class="p"><sup>56</sup>Mary stayed with Elizabeth for about three months and then returned home.</p><button type="button" class="close" aria-controls="v115">Close</button></div>
         </article>
         <div class="link arrow" aria-hidden="true"></div>
         <article class="card fulfillment">
           <p class="role">New Covenant · the fulfillment</p>
           <h3>Three Months</h3>
           <p class="sub">in the house of Zechariah</p>
-          <p class="italic">“Mary remained with her about three months”</p>
-          <p>Elizabeth is “filled with the Holy Spirit”: “Blessed are you among women”</p>
-          <p class="refs">Lk 1:40–42, 56</p>
+          <p class="italic">“Mary remained with her about three months” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v116">Lk 1:56</button></span></p>
+          <div class="passage" id="v116" hidden><p class="where">Luke 1:56<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>56</sup>Mary stayed with Elizabeth for about three months and then returned home.</p><button type="button" class="close" aria-controls="v116">Close</button></div>
+          <p>Elizabeth is “filled with the Holy Spirit”: “Blessed are you among women” <span class="cite"><button type="button" class="ref" aria-expanded="false" aria-controls="v117">Lk 1:41–42</button></span></p>
+          <div class="passage" id="v117" hidden><p class="where">Luke 1:41–42<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>41</sup>When Elizabeth heard Mary’s greeting, the baby leaped in her womb, and Elizabeth was filled with the Holy Spirit. <sup>42</sup>In a loud voice she exclaimed, “Blessed are you among women, and blessed is the fruit of your womb!</p><button type="button" class="close" aria-controls="v117">Close</button></div>
+          <p class="refs"><button type="button" class="ref" aria-expanded="false" aria-controls="v118">Lk 1:40–42, 56</button></p>
+          <div class="passage" id="v118" hidden><p class="where">Luke 1:40–42, 56<abbr title="Berean Standard Bible">BSB</abbr></p><p class="p"><sup>40</sup>where she entered the home of Zechariah and greeted Elizabeth.</p><p class="p stanza"><sup>41</sup>When Elizabeth heard Mary’s greeting, the baby leaped in her womb, and Elizabeth was filled with the Holy Spirit. <sup>42</sup>In a loud voice she exclaimed, “Blessed are you among women, and blessed is the fruit of your womb!</p><p class="gap">…</p><p class="p"><sup>56</sup>Mary stayed with Elizabeth for about three months and then returned home.</p><button type="button" class="close" aria-controls="v118">Close</button></div>
         </article>
       </div>
     </details>
@@ -754,6 +930,9 @@
     <p>Scripture quotations follow the RSV.  CCC = Catechism of the Catholic Church.  LXX = Septuagint, the Greek Old Testament.</p>
     <p>St. Justin Martyr, <i>Dialogue with Trypho</i> 100 · St. Irenaeus, <i>Against Heresies</i> III.22.4</p>
     <p>Pius XII, <i>Munificentissimus Deus</i> (1950) and <i>Ad Caeli Reginam</i> (1954)</p>
+    <p>Tap a Bible reference to read its verses, from the
+      <a href="https://berean.bible" target="_blank" rel="noopener">Berean Standard Bible</a> (public domain).
+      Catechism numbers link to the text at scborromeo.org.</p>
 </footer>
 </div>
 <script>
@@ -775,6 +954,18 @@
   document.addEventListener("click", e => {
     const summary = e.target.closest("summary");
     if (summary && !summary.parentElement.open) history.replaceState(null, "", "#" + summary.parentElement.id);
+  });
+
+  // A Bible reference unfolds its verses; tapping it again, or Close, folds them away.
+  document.addEventListener("click", e => {
+    const button = e.target.closest("button.ref, button.close");
+    if (!button) return;
+    const panel = document.getElementById(button.getAttribute("aria-controls"));
+    const ref = document.querySelector(`button.ref[aria-controls="${panel.id}"]`);
+    const open = button.classList.contains("ref") && panel.hidden;
+    panel.hidden = !open;
+    ref.setAttribute("aria-expanded", open);
+    if (!open && button !== ref) ref.scrollIntoView({ block: "nearest" });
   });
 </script>
 </body>
